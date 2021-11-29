@@ -1,0 +1,33 @@
+{
+    "name": "iRig_pads_inputs",
+    "maps": [
+        {
+            "name": "Main",
+            "id": "442a3b9d-78c3-4943-b4bb-7891c98e4570",
+            "actions": [
+                {
+                    "name": "button_1",
+                    "type": "Button",
+                    "id": "2ec027cb-0613-41eb-8ab5-17c7d6fc3283",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "806a822b-2020-4f0e-a962-bd2307319df8",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "button_1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
