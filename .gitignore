@@ -28,9 +28,6 @@ mono_crash.*
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
-# Hide SteamVR Plugin
-/[Aa]ssets/SteamVR
-/[Aa]ssets/SteamVR_Resources
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
