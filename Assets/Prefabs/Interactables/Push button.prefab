@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 7251139008802764151}
   - component: {fileID: 7337163965908500325}
   - component: {fileID: 7337163966538522725}
-  - component: {fileID: 3161563592522625204}
+  - component: {fileID: 5760257127020372448}
   m_Layer: 0
   m_Name: Push button
   m_TagString: Untagged
@@ -256,7 +256,7 @@ MonoBehaviour:
   engaged: 0
   buttonDown: 0
   buttonUp: 0
---- !u!114 &3161563592522625204
+--- !u!114 &5760257127020372448
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,6 +265,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 7224996638141062695}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6b86b479c2b1c045996ad7c521d6159, type: 3}
+  m_Script: {fileID: 11500000, guid: e7418c7dd8f977d4e969202d3fa7e926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poseEditorExpanded: 1
+  blendEditorExpanded: 1
+  poseNames:
+  - '[not set]'
+  overridePreviewLeftHandPrefab: {fileID: 1000013348574242, guid: 638779290bce1af49b356f33dcc6fccf,
+    type: 3}
+  overridePreviewRightHandPrefab: {fileID: 1000010304998954, guid: 6def53d002137b747aec0b29551e0e25,
+    type: 3}
+  skeletonMainPose: {fileID: 0}
+  skeletonAdditionalPoses: []
+  showLeftPreview: 0
+  showRightPreview: 1
+  previewLeftInstance: {fileID: 0}
+  previewRightInstance: {fileID: 0}
+  previewPoseSelection: 0
+  blendingBehaviours: []
+  scale: 1

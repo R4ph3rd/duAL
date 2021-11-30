@@ -99,4 +99,6 @@ public class RoboticArmController : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
     }
+
+    
 }
