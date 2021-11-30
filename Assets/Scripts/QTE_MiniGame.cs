@@ -19,12 +19,16 @@ public class
     public Sprite[] EndQTEScreen = new Sprite[3];
     public Text RemainingSteps;
 
-    private enum Gestures
+    public enum Gestures
     {
         Square,
         Round,
         Triangle,
         Cross,
+        V,
+        Ok,
+        Fist,
+        Pray,
         None
     }
 
