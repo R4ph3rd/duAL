@@ -7,7 +7,7 @@ namespace Valve.VR.InteractionSystem.Sample
 {
     public class InteractableButton : MonoBehaviour
     {
-        public void OnButtonDown(Hand fromHand)
+        public void OnButtonDown()
         {
             print("button down !");
         }
