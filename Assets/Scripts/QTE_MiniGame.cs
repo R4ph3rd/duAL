@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QTE_MiniGame : MonoBehaviour
+public class 
+    IA_QTE_MiniGame : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject QTEMiniGameUI;
