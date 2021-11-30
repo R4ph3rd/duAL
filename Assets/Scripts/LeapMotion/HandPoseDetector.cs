@@ -18,7 +18,7 @@ public class HandPoseDetector : MonoBehaviour
         
     }
 
-    public QTE_MiniGame.Gestures OnPoseDetected(QTE_MiniGame.Gestures pose)
+    public IA_QTE_MiniGame.Gestures OnPoseDetected(IA_QTE_MiniGame.Gestures pose)
     {
         Debug.Log($"<color=yellow>Pose {pose.ToString()} Detected</color>");
         return pose;
@@ -26,21 +26,21 @@ public class HandPoseDetector : MonoBehaviour
 
     public void OnPrayDetected()
     {
-        OnPoseDetected(QTE_MiniGame.Gestures.Pray);
+        OnPoseDetected(IA_QTE_MiniGame.Gestures.Pray);
     }
 
     public void OnVDetected()
     {
-        OnPoseDetected(QTE_MiniGame.Gestures.V);
+        OnPoseDetected(IA_QTE_MiniGame.Gestures.V);
     }
 
     public void OnOkDetected()
     {
-        OnPoseDetected(QTE_MiniGame.Gestures.Ok);
+        OnPoseDetected(IA_QTE_MiniGame.Gestures.Ok);
     }
 
     public void OnFistDetected()
     {
-        OnPoseDetected(QTE_MiniGame.Gestures.Fist);
+        OnPoseDetected(IA_QTE_MiniGame.Gestures.Fist);
     }
 }
