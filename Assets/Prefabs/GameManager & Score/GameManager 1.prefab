@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 8377613610002075929}
   - component: {fileID: 8377613610002076006}
   - component: {fileID: 8377613610002076007}
+  - component: {fileID: 6983486734687898545}
   m_Layer: 0
   m_Name: GameManager 1
   m_TagString: Untagged
@@ -195,6 +196,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d2e33456cf2f5444b5224bec326827f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RoomID: 0
+  IACamTargets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   computers: []
   gravitySensitiveObjects: []
   gravityPowerImpulse: 1
@@ -223,6 +229,18 @@ MonoBehaviour:
   HumanScore: 0.1
   TinyComputerValue: 1
   BigComputerValue: 3
+--- !u!114 &6983486734687898545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8377613610002075928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17eb4afc3e52d2745a19f8166de6e4cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8377613610064797126
 GameObject:
   m_ObjectHideFlags: 0
