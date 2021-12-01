@@ -7,9 +7,12 @@ namespace Valve.VR.InteractionSystem.Sample
 {
     public class InteractableButton : MonoBehaviour
     {
-        public void OnButtonDown()
+        public void ButtonHasBeenTouched()
         {
-            print("button down !");
+            if (transform.parent)
+            {
+                transform.GetComponentInParent<InteractableKeyboard_MiniGame>().ButtonPushed(gameObject);
+            }
         }
 
         public void OnButtonUp(Hand fromHand)

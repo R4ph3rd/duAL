@@ -15,7 +15,7 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
     public Material[] ButtonStatus = new Material[4]; // 0 : neutral | 1 : to push | 2 : success | 3 : wrong 
     //public Sprite[] LedStatus = new Sprite[3];
 
-    private GameObject NextKey;
+    private GameObject NextKey = null;
     private int InitialNumberOfSteps;
     private int NumberOfSteps;
     private bool WaitingForKey = false;
@@ -41,15 +41,11 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    public void StartMiniGame()
+    public void StartMiniGame(GameObject PlaypauseBtn)
     {
-        Debug.Log("start mini game");
+        Debug.Log("start mini game ");
+        PlaypauseBtn.GetComponentInChildren<Renderer>().material = ButtonStatus[1];
         HumanMiniGameUI.SetActive(true);
         ResetUI();
         resetStatus();
@@ -58,30 +54,31 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
 
     public void ButtonPushed(GameObject btn)
     {
-        if (btn.gameObject.name == NextKey.name)
+        if (btn.name == NextKey.name)
         {
-            Debug.Log("great ! " + btn.gameObject.name);
-            SuccessStep(btn);
+            StepSuccess++;
+            print("great ! score : " + StepSuccess);
+            SuccessStepFX(btn);
         } else
         {
-            Debug.Log("fail ! " + btn.gameObject.name);
-            MissStep(btn);
-
+            MissStepFX(btn);
         }
     }
 
-    void MissStep(GameObject btn)
+    void MissStepFX(GameObject btn)
     {
         PlaySound(FailureStepSound);
         btn.GetComponentInChildren<Renderer>().material = ButtonStatus[3];
+
+        StartCoroutine(FadeKey(btn));
     }
 
-    void MissStep()
+    void MissStepFX()
     {
         PlaySound(FailureStepSound);
     }
 
-    void SuccessStep(GameObject btn)
+    void SuccessStepFX(GameObject btn)
     {
         btn.GetComponentInChildren<Renderer>().material = ButtonStatus[2];
     }
@@ -107,11 +104,16 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
         yield return new WaitForSecondsRealtime(StepDelay);
 
         // if gesture hasn't been done in time, consider it's a failure
-        if (WaitingForKey) MissStep();
+        if (WaitingForKey) MissStepFX();
         if (NumberOfSteps > 0)
         {
             StartCoroutine(GenerateStep());
-            NextKey.GetComponentInChildren<Renderer>().material = ButtonStatus[0];
+
+            if (NextKey != null)
+            {
+                NextKey.GetComponentInChildren<Renderer>().material = ButtonStatus[0];
+            }
+
             NextKey = Buttons[Random.Range(0, Buttons.Count)];
             StartCoroutine(FadeNextStep());
             NumberOfSteps--;
@@ -128,6 +130,12 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
     {
         yield return new WaitForSeconds(.2f);
         NextKey.GetComponentInChildren<Renderer>().material = ButtonStatus[1];
+    }
+
+    IEnumerator FadeKey(GameObject btn)
+    {
+        yield return new WaitForSecondsRealtime(.2f);
+        btn.GetComponentInChildren<Renderer>().material = ButtonStatus[0];
     }
 
     void EndMiniGame()

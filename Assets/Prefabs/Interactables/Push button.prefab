@@ -224,10 +224,11 @@ MonoBehaviour:
   onButtonDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnButtonDown
-        m_Mode: 0
+      - m_Target: {fileID: 3013151843871467386}
+        m_TargetAssemblyTypeName: Valve.VR.InteractionSystem.Sample.InteractableButton,
+          Assembly-CSharp
+        m_MethodName: ButtonHasBeenTouched
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -298,3 +299,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b86b479c2b1c045996ad7c521d6159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movingPart: {fileID: 0}
+  localMoveDistance: {x: 0, y: -0.1, z: 0}
+  engageAtPercent: 0.95
+  disengageAtPercent: 0.9
+  onButtonDown:
+    m_PersistentCalls:
+      m_Calls: []
+  onButtonUp:
+    m_PersistentCalls:
+      m_Calls: []
+  onButtonIsPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  engaged: 0
+  buttonDown: 0
+  buttonUp: 0
