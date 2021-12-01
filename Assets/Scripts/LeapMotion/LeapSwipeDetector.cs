@@ -29,6 +29,7 @@ public class LeapSwipeDetector : MonoBehaviour
             palmDirDetect = gameObject.AddComponent<PalmDirectionDetector>();
             palmDirDetect.HandModel = handModel;
             palmDirDetect.PointingDirection = swipeVector;
+            palmDirDetect.PointingType = PointingType.RelativeToWorld;
         }
         
     }

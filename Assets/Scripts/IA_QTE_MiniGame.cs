@@ -21,10 +21,10 @@ public class
 
     public enum Gestures
     {
-        Square,
-        Round,
-        Triangle,
-        Cross,
+        //Square,
+        //Round,
+        //Triangle,
+        //Cross,
         V,
         Ok,
         Fist,
@@ -43,54 +43,39 @@ public class
     public float minValueToWin = .5f;
     public float StepDelay = 1f;
     public int maxSteps = 20;
+
     void Start()
     {
+        HandPoseDetector.newPoseEvent += OnNewPoseDetected;
     }
 
     // Update is called once per frame
-    void Update()
+    public void OnNewPoseDetected()
     {
+        Debug.Log($"<color=red>Event raised</color>");
         if (WaitingForKey)
         {
-            if (Input.anyKeyDown)
-            {
-                WaitingForKey = !WaitingForKey;
-                Gestures key = Gestures.None;
+            WaitingForKey = !WaitingForKey;
+            Gestures key = HandPoseDetector.instance.lastRecordedPose;
+            Debug.Log($"<color=orange>Gesture {key}</color>");
 
-                if(Input.GetKeyDown("a"))
-                {
-                    key = Gestures.Square;
-                }
-                if (Input.GetKeyDown("z"))
-                {
-                    key = Gestures.Cross;
-                }
-                if (Input.GetKeyDown("e"))
-                {
-                    key = Gestures.Triangle;
-                }
-                if (Input.GetKeyDown("r"))
-                {
-                    key = Gestures.Round;
-                }
+            if (key == NextKey)
+            { // step successfully done in time
+                StepSuccess++;
+                PlaySound(SuccessStepSound);
 
-                Debug.Log("key detected : " + key);
-
-
-                if (key == NextKey)
-                { // step successfully done in time
-                    StepSuccess++;
-                    PlaySound(SuccessStepSound);
-
-                    progressionBar.value = (float)StepSuccess / InitialNumberOfSteps;
-                    LedImg.sprite = LedStatus[1];
-                } else
-                { // recognized step is not the expected one
-                    PlaySound(FailureStepSound);
-                    LedImg.sprite = LedStatus[2];
-                }
+                progressionBar.value = (float)StepSuccess / InitialNumberOfSteps;
+                LedImg.sprite = LedStatus[1];
             }
+            else
+            { // recognized step is not the expected one
+                PlaySound(FailureStepSound);
+                LedImg.sprite = LedStatus[2];
+            }
+
+            key = Gestures.None;
         }
+
     }
 
     public void StartQTE()
@@ -138,6 +123,7 @@ public class
             NumberOfSteps--;
             RemainingSteps.text = NumberOfSteps.ToString();
             WaitingForKey = true;
+            
         } else
         {
             EndMiniGame();

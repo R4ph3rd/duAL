@@ -132,8 +132,11 @@ public class RoboticArmController : MonoBehaviour
         Debug.Log("UNGRABBED!");
         /*Releasing the grabbed object*/
         yield return new WaitForSeconds(0.5f);
-        grabbedGameObject.transform.parent.DetachChildren();
-        grabbedGameObject.GetComponent<Grabbable>().UpdateGrabStatus(false);
+        if (attachmentPoint.transform.childCount > 0)
+        {
+            grabbedGameObject.GetComponent<Grabbable>().UpdateGrabStatus(false);
+            attachmentPoint.transform.DetachChildren();
+        }
         grabbedGameObject = null;
 
     }

@@ -6,22 +6,29 @@ using UnityEngine.Events;
 
 public class HandPoseDetector : MonoBehaviour
 {
+    public static HandPoseDetector instance;
+
+    public delegate void OnHandPoseDelegate();
+    public static event OnHandPoseDelegate newPoseEvent;
+    public IA_QTE_MiniGame.Gestures lastRecordedPose= IA_QTE_MiniGame.Gestures.None;
 
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log($"Last recorded = {lastRecordedPose}");
     }
 
-    public IA_QTE_MiniGame.Gestures OnPoseDetected(IA_QTE_MiniGame.Gestures pose)
+    public void OnPoseDetected(IA_QTE_MiniGame.Gestures pose)
     {
         Debug.Log($"<color=yellow>Pose {pose.ToString()} Detected</color>");
-        return pose;
+        lastRecordedPose = pose;
+        newPoseEvent.Invoke();
     }
 
     public void OnPrayDetected()
@@ -43,4 +50,6 @@ public class HandPoseDetector : MonoBehaviour
     {
         OnPoseDetected(IA_QTE_MiniGame.Gestures.Fist);
     }
+
+    public void test() { Debug.Log("Event INVOKED"); }
 }

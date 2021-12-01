@@ -22,6 +22,7 @@ public class Diskette : MonoBehaviour
         /*Case the Diskette is not carried*/
         if (isDispensed && transform.parent == null)
         {
+            rigidbody.useGravity = true;
             rigidbody.isKinematic = false;
             timer += Time.deltaTime;
             if (timer >= timeOut)
@@ -32,6 +33,7 @@ public class Diskette : MonoBehaviour
         }
         else if(isDispensed && transform.parent != null)
         {
+            rigidbody.useGravity = false;
             rigidbody.isKinematic = true;
             timer = 0f;
         }
