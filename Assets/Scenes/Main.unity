@@ -2273,6 +2273,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e48c85d8a0b1648afee615edf34271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  computers: []
+  gravitySensitiveObjects:
+  - {fileID: 420731129}
+  - {fileID: 1559879697}
+  gravityPowerImpulse: 1
 --- !u!1 &888877423
 GameObject:
   m_ObjectHideFlags: 0
@@ -2927,6 +2932,17 @@ PrefabInstance:
     - target: {fileID: 7226553735710040971, guid: 21421768c2c85674d9eb895135ad6a5f,
         type: 3}
       propertyPath: m_RootOrder
+      propertyPath: swipeDir
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2522437163196944780, guid: a46e5ed30762b8a4695c63896de5ed33,
+        type: 3}
+      propertyPath: OnActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 823125568}
+    - target: {fileID: 2522437163225880475, guid: a46e5ed30762b8a4695c63896de5ed33,
+        type: 3}
+      propertyPath: ModelPool.Array.data[0].IsLeftToBeSpawned
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7226553735710040971, guid: 21421768c2c85674d9eb895135ad6a5f,

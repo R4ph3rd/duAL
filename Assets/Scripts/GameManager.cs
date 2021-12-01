@@ -26,8 +26,22 @@ public class GameManager : MonoBehaviour
         None
     }
 
+    [Header("Gravity Power")]
     public GameObject[] gravitySensitiveObjects;
-    private bool isGravityPowerTriggered=false;
+    public float gravityPowerImpulse = 1f;
+    public float gravityPowerCoolDown = 60f;
+    public float gravityPowerDuration = 10f;
+    private bool isGravityPowerTriggered = false;
+
+    [Header("Diskette")]
+    public DisketteDispenser disketteDispenser; //UNUSED
+    public DiskettePort diskettePort;
+    public float hackingTime = 20f;
+    private bool isPlayerHackingAIComputers = false;
+    private float hackingTimer=0f;
+
+
+    
 
 
     void Start()
@@ -40,7 +54,30 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        /*Handling the hacking of the AI computers*/
+        if (isPlayerHackingAIComputers)
+        {
+            hackingTimer += Time.deltaTime;
+            /*Case of a successfull hacking*/
+            if (hackingTimer >= hackingTime)
+            {
+                Debug.Log("<color=green>Successfull hacking ! AI looses all its computers</color>");
+                foreach (Computer c in computers)
+                {
+                    if(c.status == Owner.IA)
+                    {
+                        c.status = Owner.None;
+                    }
+                }
+                /*Display a log on the AI interface*/
+                /*Play a hacking sound ?*/
+            }
+            /*Case someone removed the diskette before the end of the hacking sequence*/
+            else if((!diskettePort.isDisketteIn)&&(hackingTimer < hackingTime))
+            {
+                Debug.Log("<color=red>Diskette removed before the end of the hacking sequence</color>");
+            }
+        }
     }
 
     /// <summary>
@@ -69,19 +106,22 @@ public class GameManager : MonoBehaviour
             {
                 if(obj.TryGetComponent<Rigidbody>(out rigidbody))
                 {
-                    rigidbody.AddForce(new Vector3(0, 0.1f, 0), ForceMode.Impulse);
+                    rigidbody.AddForce(new Vector3(0, gravityPowerImpulse, 0), ForceMode.Impulse);
                     rigidbody.AddTorque(new Vector3(Random.Range(0.05f, 0.1f), Random.Range(0.05f, 0.1f), Random.Range(0.05f, 0.1f)));
-
                 }
             }
         }
 
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(gravityPowerDuration);
 
         /*Reactivitating the gravity*/
         Physics.gravity = new Vector3(0, -9.81f, 0);
-        isGravityPowerTriggered = false;
+
         Debug.Log("<color=green>GRAVITY SYSTEM ENABLED</color>");
+
+        /*cooldown phase*/
+        yield return new WaitForSeconds(gravityPowerCoolDown);
+        isGravityPowerTriggered = false;
     }
 
     /// <summary>
@@ -90,5 +130,12 @@ public class GameManager : MonoBehaviour
     public void TriggerEMIPower()
     {
 
+    }
+
+
+    public void TriggerDisketteSequence()
+    {
+        isPlayerHackingAIComputers = true;
+        hackingTimer = 0f;
     }
 }

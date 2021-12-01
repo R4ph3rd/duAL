@@ -21,11 +21,16 @@ public class RoboticArmController : MonoBehaviour
     public GameObject upperWrenchIKTarget;
     public GameObject lowerWrenchIKTarget;
 
+    public GameObject attachmentPoint;
+
     private Hand hand;
     private Vector3 handFormerNormal;
     private Vector3 handFormerPosition;
     private Space robotSpace;
     private bool isPinching = false;
+    private bool isTryingToGrab = false;
+
+    private GameObject grabbedGameObject;
 
     // Start is called before the first frame update
     void Start()
@@ -75,9 +80,8 @@ public class RoboticArmController : MonoBehaviour
 
     IEnumerator PinchingInteraction()
     {
-
-
         float timer = 0f;
+        isTryingToGrab = true;
         while (timer <= 1f)
         {
             lowerWrenchIKTarget.transform.Translate(-Vector3.left * 0.0001f, Space.Self);
@@ -85,12 +89,19 @@ public class RoboticArmController : MonoBehaviour
             timer += 0.01f;
             yield return new WaitForSeconds(0.01f);
         }
+        yield return new WaitForSeconds(1f);
+        isTryingToGrab = false;
 
     }
 
     IEnumerator ReleasePinching()
     {
         float timer = 0f;
+        if (grabbedGameObject != null)
+        {
+            StartCoroutine(Ungrab());
+        }
+
         while (timer <= 1f)
         {
             lowerWrenchIKTarget.transform.Translate(Vector3.left * 0.0001f, Space.Self);
@@ -98,7 +109,32 @@ public class RoboticArmController : MonoBehaviour
             timer += 0.01f;
             yield return new WaitForSeconds(0.01f);
         }
+        
     }
 
-    
+    public void Grab(Grabbable grabbedObject)
+    {
+        if(grabbedGameObject == null && isTryingToGrab)
+        {
+            Debug.Log("GRABBED!");
+            grabbedObject.UpdateGrabStatus(true);
+            grabbedGameObject = grabbedObject.gameObject;
+
+            /*Putting the grabbed object as a children of the lower wrench*/
+            grabbedGameObject.transform.SetParent(attachmentPoint.transform);
+            grabbedGameObject.transform.localPosition = new Vector3(0, 0, 0);
+        }
+    }
+
+    IEnumerator Ungrab()
+    {
+        
+        Debug.Log("UNGRABBED!");
+        /*Releasing the grabbed object*/
+        yield return new WaitForSeconds(0.5f);
+        grabbedGameObject.transform.parent.DetachChildren();
+        grabbedGameObject.GetComponent<Grabbable>().UpdateGrabStatus(false);
+        grabbedGameObject = null;
+
+    }
 }
