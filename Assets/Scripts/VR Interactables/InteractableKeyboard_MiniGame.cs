@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts;
+
+/* MUST BE ATTACHED TO AN OBJECT WITH Computer COMPONENT */
 
 public class InteractableKeyboard_MiniGame : MonoBehaviour
 {
@@ -27,8 +30,10 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
     public int maxSteps = 20;
     public int blinkRepeat = 6;
     public float blinkFrequence = .3f;
+
     void Start()
     {
+
         Transform[] buttons = GetComponentsInChildren<Transform>();
 
         foreach(Transform button in buttons)
@@ -147,10 +152,12 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
         if (((float)StepSuccess / (float)InitialNumberOfSteps) > minValueToWin)
         {
             Debug.Log("-- QTE mini game success -- ");
+            GetComponent<Computer>().CaptureComputer(GameManager.Owner.Human);
         }
         else
         {
             Debug.Log("-- QTE mini game failed -- ");
+            GetComponent<Computer>().FailedMiniGame(GameManager.Owner.Human);
         }
 
         for (int i = 0; i < blinkRepeat; i++)

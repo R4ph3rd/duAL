@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class 
     IA_QTE_MiniGame : MonoBehaviour
 {
+
+    /* MUST BE ATTACHED TO AN OBJECT WITH Computer COMPONENT */
+
     // Start is called before the first frame update
     public GameObject QTEMiniGameUI;
     public AudioClip SuccessStepSound, FailureStepSound;
@@ -146,10 +149,12 @@ public class
         {
             Debug.Log("-- QTE mini game success -- ");
             NextGestureImage.sprite = EndQTEScreen[1];
+            GetComponent<Computer>().CaptureComputer(GameManager.Owner.IA);
         } else
         {
             Debug.Log("-- QTE mini game failed -- ");
             NextGestureImage.sprite = EndQTEScreen[2];
+            GetComponent<Computer>().CaptureComputer(GameManager.Owner.IA);
         }
 
         resetStatus();

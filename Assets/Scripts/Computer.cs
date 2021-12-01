@@ -8,19 +8,9 @@ namespace Assets.Scripts
         public GameManager.Owner status = GameManager.Owner.None;
 
         // FX
-        public Material IAScreen, HumanScreen;
-        public AudioSource IAWinMiniGame, IALooseMiniGame, HumanWinMiniGame, HumanLooseMiniGame;
-
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        public GameObject ComputerScreen;
+        public Material IAScreenMat, HumanScreenMat;
+        public AudioClip IAWinMiniGameSound, IALooseMiniGameSound, HumanWinMiniGameSound, HumanLooseMiniGameSound;
 
         public void CaptureComputer(GameManager.Owner owner)
         {
@@ -28,14 +18,30 @@ namespace Assets.Scripts
             switch (owner)
             {
                 case GameManager.Owner.IA:
-                    PlaySound(IAWinMiniGame);
+                    if (IAScreenMat) ComputerScreen.GetComponent<Renderer>().material = IAScreenMat;
+                    PlaySound(IAWinMiniGameSound);
                     break;
                 case GameManager.Owner.Human:
-                    PlaySound(HumanWinMiniGame);
+                    if (HumanScreenMat) ComputerScreen.GetComponent<Renderer>().material = HumanScreenMat;
+                    PlaySound(HumanWinMiniGameSound);
                     break;
                 default:
                     break;
             }
+
+            GetComponentInChildren<TextMesh>().text = owner.ToString();
+        }
+
+        public void CaptureComputer()
+        {
+            GameManager.Owner owner = GameManager.Owner.Human;
+
+            if (IAScreenMat) ComputerScreen.GetComponent<Renderer>().material = IAScreenMat;
+            PlaySound(IAWinMiniGameSound);
+            status = owner;
+
+            GetComponentInChildren<TextMesh>().text = owner.ToString();
+            print(status.ToString());
         }
 
         public void FailedMiniGame(GameManager.Owner owner)
@@ -43,18 +49,21 @@ namespace Assets.Scripts
             switch (owner)
             {
                 case GameManager.Owner.IA:
-                    PlaySound(IALooseMiniGame);
+                    PlaySound(IALooseMiniGameSound);
                     break;
                 case GameManager.Owner.Human:
-                    PlaySound(HumanLooseMiniGame);
+                    PlaySound(HumanLooseMiniGameSound);
                     break;
                 default:
                     break;
             }
         }
 
-        private void PlaySound(AudioSource sound)
+        private void PlaySound(AudioClip clip)
         {
+            AudioSource sound = GetComponent<AudioSource>();
+            sound.clip = clip;
+
             if (sound.isPlaying)
             {
                 sound.time = 0;
