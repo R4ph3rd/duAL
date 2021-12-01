@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     [Header("Gravity Power")]
     public GameObject[] gravitySensitiveObjects;
     public float gravityPowerImpulse = 1f;
+    public float gravityPowerCoolDown = 60f;
+    public float gravityPowerDuration = 10f;
     private bool isGravityPowerTriggered = false;
 
     [Header("Diskette")]
@@ -106,17 +108,20 @@ public class GameManager : MonoBehaviour
                 {
                     rigidbody.AddForce(new Vector3(0, gravityPowerImpulse, 0), ForceMode.Impulse);
                     rigidbody.AddTorque(new Vector3(Random.Range(0.05f, 0.1f), Random.Range(0.05f, 0.1f), Random.Range(0.05f, 0.1f)));
-
                 }
             }
         }
 
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(gravityPowerDuration);
 
         /*Reactivitating the gravity*/
         Physics.gravity = new Vector3(0, -9.81f, 0);
-        isGravityPowerTriggered = false;
+
         Debug.Log("<color=green>GRAVITY SYSTEM ENABLED</color>");
+
+        /*cooldown phase*/
+        yield return new WaitForSeconds(gravityPowerCoolDown);
+        isGravityPowerTriggered = false;
     }
 
     /// <summary>

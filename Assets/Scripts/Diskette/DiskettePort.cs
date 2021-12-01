@@ -33,15 +33,5 @@ public class DiskettePort : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Reset the diskette position if it is destroyed or after a successfull hacking
-    /// </summary>
-    public void ResetDiskette()
-    {
-        /*Disabling the gameObject*/
-        diskette.gameObject.SetActive(false);
-
-        /**/
-        //GameManager.GetManager().disketteDispenser.DestroyDiskette();
-    }
+    
 }
