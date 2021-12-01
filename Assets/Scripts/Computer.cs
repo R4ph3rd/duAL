@@ -6,11 +6,21 @@ namespace Assets.Scripts
     public class Computer : MonoBehaviour
     {
         public GameManager.Owner status = GameManager.Owner.None;
+        public float ComputerValue;
+        public bool isBigComputer = false;
 
         // FX
         public GameObject ComputerScreen;
         public Material IAScreenMat, HumanScreenMat;
         public AudioClip IAWinMiniGameSound, IALooseMiniGameSound, HumanWinMiniGameSound, HumanLooseMiniGameSound;
+
+        private Score score;
+
+        public void Start()
+        {
+            score = Score.GetScore();
+            ComputerValue = isBigComputer ? score.BigComputerValue : score.TinyComputerValue;
+        }
 
         public void CaptureComputer(GameManager.Owner owner)
         {
