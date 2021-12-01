@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 8377613610002076006}
   - component: {fileID: 8377613610002076007}
   - component: {fileID: 6983486734687898545}
+  - component: {fileID: 5442547724306276464}
   m_Layer: 0
   m_Name: GameManager 1
   m_TagString: Untagged
@@ -196,11 +197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d2e33456cf2f5444b5224bec326827f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomID: 0
-  IACamTargets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   computers: []
   gravitySensitiveObjects: []
   gravityPowerImpulse: 1
@@ -241,6 +237,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17eb4afc3e52d2745a19f8166de6e4cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IACam: {fileID: 0}
+  RoomID: 1
+  IACamTargets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &5442547724306276464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8377613610002075928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5698146e372bcc4429ad95b4f2051111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IAWinMiniGameSound: {fileID: 8300000, guid: 2110f4b408018a6458d8c2aab6666694, type: 3}
+  IALooseMiniGameSound: {fileID: 8300000, guid: 77333bba2cb772845ad1ac80276d2042,
+    type: 3}
+  HumanWinMiniGameSound: {fileID: 8300000, guid: e0f9c0ff8c49cc347a0b322c978273ee,
+    type: 3}
+  HumanLooseMiniGameSound: {fileID: 8300000, guid: 1e192355168f6254eb12f6b1756d4950,
+    type: 3}
+  SuccessStepSound: {fileID: 8300000, guid: 034092908f8f6b049b69893f933e0b14, type: 3}
+  FailureStepSound: {fileID: 8300000, guid: a8fcf649f0f3e6d4581d431cedf8ac16, type: 3}
 --- !u!1 &8377613610064797126
 GameObject:
   m_ObjectHideFlags: 0

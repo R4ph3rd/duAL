@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Assets.Scripts;
 
 namespace Assets.Scripts
 {
@@ -8,17 +9,21 @@ namespace Assets.Scripts
         public GameManager.Owner status = GameManager.Owner.None;
         public float ComputerValue;
         public bool isBigComputer = false;
+        public int RoomID;
 
         // FX
         public GameObject ComputerScreen;
         public Material IAScreenMat, HumanScreenMat;
-        public AudioClip IAWinMiniGameSound, IALooseMiniGameSound, HumanWinMiniGameSound, HumanLooseMiniGameSound;
 
         private Score score;
+        private SoundManager sm;
+        private AudioSource source;
 
         public void Start()
         {
             score = Score.GetScore();
+            sm = SoundManager.GetSoundManager();
+            source = GetComponent<AudioSource>();
             ComputerValue = isBigComputer ? score.BigComputerValue : score.TinyComputerValue;
         }
 
@@ -29,16 +34,17 @@ namespace Assets.Scripts
             {
                 case GameManager.Owner.IA:
                     if (IAScreenMat) ComputerScreen.GetComponent<Renderer>().material = IAScreenMat;
-                    PlaySound(IAWinMiniGameSound);
+                    source.clip = sm.IAWinMiniGameSound;
                     break;
                 case GameManager.Owner.Human:
                     if (HumanScreenMat) ComputerScreen.GetComponent<Renderer>().material = HumanScreenMat;
-                    PlaySound(HumanWinMiniGameSound);
+                    source.clip = sm.HumanWinMiniGameSound;
                     break;
                 default:
                     break;
             }
 
+            sm.PlaySound(source);
             GetComponentInChildren<TextMesh>().text = owner.ToString();
         }
 
@@ -47,7 +53,8 @@ namespace Assets.Scripts
             GameManager.Owner owner = GameManager.Owner.Human;
 
             if (IAScreenMat) ComputerScreen.GetComponent<Renderer>().material = IAScreenMat;
-            PlaySound(IAWinMiniGameSound);
+            source.clip = sm.IAWinMiniGameSound;
+            sm.PlaySound(source);
             status = owner;
 
             GetComponentInChildren<TextMesh>().text = owner.ToString();
@@ -59,30 +66,15 @@ namespace Assets.Scripts
             switch (owner)
             {
                 case GameManager.Owner.IA:
-                    PlaySound(IALooseMiniGameSound);
+                    source.clip = sm.IALooseMiniGameSound;
                     break;
                 case GameManager.Owner.Human:
-                    PlaySound(HumanLooseMiniGameSound);
+                    source.clip = sm.HumanLooseMiniGameSound;
                     break;
                 default:
                     break;
             }
-        }
-
-        private void PlaySound(AudioClip clip)
-        {
-            AudioSource sound = GetComponent<AudioSource>();
-            sound.clip = clip;
-
-            if (sound.isPlaying)
-            {
-                sound.time = 0;
-                sound.Play();
-            }
-            else
-            {
-                sound.Play();
-            }
+            sm.PlaySound(source);
         }
     }
 }

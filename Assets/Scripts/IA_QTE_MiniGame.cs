@@ -12,7 +12,6 @@ public class
 
     // Start is called before the first frame update
     public GameObject QTEMiniGameUI;
-    public AudioClip SuccessStepSound, FailureStepSound;
     public Slider progressionBar;
     public Image LedImg;
 
@@ -47,9 +46,14 @@ public class
     public float StepDelay = 1f;
     public int maxSteps = 20;
 
+    private SoundManager sm;
+    private AudioSource source;
+
     void Start()
     {
         HandPoseDetector.newPoseEvent += OnNewPoseDetected;
+        sm = SoundManager.GetSoundManager();
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -65,14 +69,16 @@ public class
             if (key == NextKey)
             { // step successfully done in time
                 StepSuccess++;
-                PlaySound(SuccessStepSound);
+                source.clip = sm.SuccessStepSound;
+                sm.PlaySound(source);
 
                 progressionBar.value = (float)StepSuccess / InitialNumberOfSteps;
                 LedImg.sprite = LedStatus[1];
             }
             else
             { // recognized step is not the expected one
-                PlaySound(FailureStepSound);
+                source.clip = sm.FailureStepSound;
+                sm.PlaySound(source);
                 LedImg.sprite = LedStatus[2];
             }
 
@@ -92,7 +98,8 @@ public class
 
     void MissStep()
     {
-        PlaySound(FailureStepSound);
+        source.clip = sm.FailureStepSound;
+        sm.PlaySound(source);
         LedImg.sprite = LedStatus[2];
     }
 
@@ -166,21 +173,5 @@ public class
     {
         yield return new WaitForSecondsRealtime(3);
         QTEMiniGameUI.SetActive(false);
-    }
-
-    private void PlaySound(AudioClip sound)
-    {
-        AudioSource audio = GetComponent<AudioSource>();
-        audio.clip = sound;
-
-        if (audio.isPlaying)
-        {
-            audio.time = 0;
-            audio.Play();
-        }
-        else
-        {
-            audio.Play();
-        }
     }
 }

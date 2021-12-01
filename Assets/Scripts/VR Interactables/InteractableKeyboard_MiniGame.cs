@@ -12,7 +12,6 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
     private List<GameObject> Buttons = new List<GameObject>();
     public GameObject HumanMiniGameUI;
 
-    public AudioClip SuccessStepSound, FailureStepSound;
     public Slider progressionBar;
     public Text RemainingSteps;
     public Material[] ButtonStatus = new Material[4]; // 0 : neutral | 1 : to push | 2 : success | 3 : wrong 
@@ -31,8 +30,13 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
     public int blinkRepeat = 6;
     public float blinkFrequence = .3f;
 
+    private SoundManager sm;
+    private AudioSource source;
+
     void Start()
     {
+        sm = SoundManager.GetSoundManager();
+        source = GetComponent<AudioSource>();
 
         Transform[] buttons = GetComponentsInChildren<Transform>();
 
@@ -72,7 +76,8 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
 
     void MissStepFX(GameObject btn)
     {
-        PlaySound(FailureStepSound);
+        source.clip = sm.FailureStepSound;
+        sm.PlaySound(source);
         btn.GetComponentInChildren<Renderer>().material = ButtonStatus[3];
 
         StartCoroutine(FadeKey(btn));
@@ -80,11 +85,14 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
 
     void MissStepFX()
     {
-        PlaySound(FailureStepSound);
+        source.clip = sm.FailureStepSound;
+        sm.PlaySound(source);
     }
 
     void SuccessStepFX(GameObject btn)
     {
+        source.clip = sm.SuccessStepSound;
+        sm.PlaySound(source);
         btn.GetComponentInChildren<Renderer>().material = ButtonStatus[2];
     }
 
@@ -193,22 +201,6 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
             {
                 btn.GetComponentInChildren<Renderer>().material = ButtonStatus[0];
             }
-        }
-    }
-
-    private void PlaySound(AudioClip sound)
-    {
-        AudioSource audio = GetComponent<AudioSource>();
-        audio.clip = sound;
-
-        if (audio.isPlaying)
-        {
-            audio.time = 0;
-            audio.Play();
-        }
-        else
-        {
-            audio.Play();
         }
     }
 }
