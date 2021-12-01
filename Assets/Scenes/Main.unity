@@ -1542,6 +1542,7 @@ MonoBehaviour:
   gravitySensitiveObjects:
   - {fileID: 420731129}
   - {fileID: 1559879697}
+  gravityPowerImpulse: 1
 --- !u!1 &888877423
 GameObject:
   m_ObjectHideFlags: 0
@@ -1759,6 +1760,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hand
+      objectReference: {fileID: 0}
+    - target: {fileID: 2522437163196944780, guid: a46e5ed30762b8a4695c63896de5ed33,
+        type: 3}
+      propertyPath: swipeDir
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2522437163196944780, guid: a46e5ed30762b8a4695c63896de5ed33,
         type: 3}
