@@ -172,7 +172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 348782112030675329}
   m_Layer: 0
-  m_Name: Room-2
+  m_Name: Room-Control
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1426,7 +1426,7 @@ GameObject:
   - component: {fileID: 7863433320678432208}
   - component: {fileID: 4805247699808741745}
   m_Layer: 0
-  m_Name: Room-0
+  m_Name: Room-Storage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2319,7 +2319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4270732312148211013}
   m_Layer: 0
-  m_Name: IA Camera Target - Room2
+  m_Name: IA Camera Target - Room-Control
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4582,7 +4582,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7883305211706414948}
   m_Layer: 0
-  m_Name: Room-1
+  m_Name: Room-Bridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5198,7 +5198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8979325005415709598}
   m_Layer: 0
-  m_Name: IA Camera Target - Room0
+  m_Name: IA Camera Target - Room-Storage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6083,7 +6083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4700530577911838997}
   m_Layer: 0
-  m_Name: IA Camera Target - Room1
+  m_Name: IA Camera Target - Room-Bridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
