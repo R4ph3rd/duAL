@@ -12737,6 +12737,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ComputerPackage 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4255956190954468530, guid: c65ff280e2f56564891981c767216139,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8ce871d24c7514a4990cc4ae1d117826, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c65ff280e2f56564891981c767216139, type: 3}
 --- !u!1001 &5622562827185635553
@@ -13318,6 +13323,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ComputerPackage 1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4255956190954468530, guid: c65ff280e2f56564891981c767216139,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8ce871d24c7514a4990cc4ae1d117826, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c65ff280e2f56564891981c767216139, type: 3}
 --- !u!1001 &5622562827479539476
@@ -13800,6 +13810,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ComputerPackage 1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4255956190954468530, guid: c65ff280e2f56564891981c767216139,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8ce871d24c7514a4990cc4ae1d117826, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c65ff280e2f56564891981c767216139, type: 3}
 --- !u!1001 &5622562828542886143
