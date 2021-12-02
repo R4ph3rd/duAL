@@ -11,7 +11,7 @@ public class
     /* MUST BE ATTACHED TO AN OBJECT WITH Computer COMPONENT */
 
     // Start is called before the first frame update
-    public GameObject QTEMiniGameUI;
+    //public GameObject QTEMiniGameUI;
     public Slider progressionBar;
     public Image LedImg;
 
@@ -48,6 +48,8 @@ public class
 
     private SoundManager sm;
     private AudioSource source;
+
+    private Computer BindedComputer;
 
     void Start()
     {
@@ -87,10 +89,11 @@ public class
 
     }
 
-    public void StartQTE()
+    public void StartQTE(Computer computer)
     {
+        BindedComputer = computer;
         Debug.Log("start qte mini game");
-        QTEMiniGameUI.SetActive(true);
+        //QTEMiniGameUI.SetActive(true);
         ResetUI();
         resetStatus();
         StartCoroutine(GenerateStep());
@@ -156,12 +159,12 @@ public class
         {
             Debug.Log("-- QTE mini game success -- ");
             NextGestureImage.sprite = EndQTEScreen[1];
-            GetComponent<Computer>().CaptureComputer(GameManager.Owner.IA);
+            BindedComputer.GetComponent<Computer>().CaptureComputer(GameManager.Owner.IA);
         } else
         {
             Debug.Log("-- QTE mini game failed -- ");
             NextGestureImage.sprite = EndQTEScreen[2];
-            GetComponent<Computer>().CaptureComputer(GameManager.Owner.IA);
+            BindedComputer.GetComponent<Computer>().FailedMiniGame(GameManager.Owner.IA);
         }
 
         resetStatus();
@@ -172,6 +175,6 @@ public class
     IEnumerator FadeQTEUI()
     {
         yield return new WaitForSecondsRealtime(3);
-        QTEMiniGameUI.SetActive(false);
+        //QTEMiniGameUI.SetActive(false);
     }
 }

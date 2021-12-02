@@ -8,9 +8,11 @@ public class Score : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public GameObject ScoreBar;
-    private GameObject ScoreFill;
-    private RectTransform ScorePos;
+    public GameObject[] ScoreBars;
+    public Transform[] HumanScoreTexts; // add parent of texts
+    public Transform[] IAScoreTexts; // idem
+    private List<GameObject> ScoreFills = new List<GameObject>();
+    private List<RectTransform> ScorePos = new List<RectTransform>();
 
     public Color HumanColor;
     public Color IAColor;
@@ -36,18 +38,29 @@ public class Score : MonoBehaviour
 
     void Start()
     {
-        ScoreFill = ScoreBar.transform.GetChild(2).GetChild(0).gameObject;
-        ScorePos = ScoreFill.GetComponent<RectTransform>();
+        foreach(GameObject scorebar in ScoreBars)
+        {
+            GameObject scorefill = scorebar.transform.GetChild(2).GetChild(0).gameObject;
+            ScoreFills.Add(scorefill);
+            ScorePos.Add(scorefill.GetComponent<RectTransform>());
+
+            scorebar.transform.GetChild(1).GetComponent<Image>().color = IAColor;
+            scorefill.GetComponent<Image>().color = HumanColor;
+        }
 
         StartCoroutine(UpdateScorePlayer());
 
-        transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Text>().color = HumanColor;
-        transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<Text>().color = IAColor;
-        transform.GetChild(0).GetChild(1).GetChild(0).GetChild(0).GetComponent<Text>().color = HumanColor;
-        transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetComponent<Text>().color = IAColor;
-        ScoreBar.transform.GetChild(1).GetComponent<Image>().color = IAColor;
-        ScoreFill.GetComponent<Image>().color = HumanColor;
+        foreach(Transform humanText in HumanScoreTexts)
+        {
+            humanText.GetChild(0).GetComponent<Text>().color = HumanColor;
+            humanText.GetChild(0).GetChild(0).GetComponent<Text>().color = HumanColor;
+        }
 
+        foreach (Transform iaText in IAScoreTexts)
+        {
+            iaText.GetChild(0).GetComponent<Text>().color = HumanColor;
+            iaText.GetChild(0).GetChild(0).GetComponent<Text>().color = HumanColor;
+        }
     }
 
     // Update is called once per frame
@@ -62,9 +75,20 @@ public class Score : MonoBehaviour
         float bestScore = HumanScore >= IAScore ? HumanScore : IAScore;
 
         //ScoreFill.GetComponent<Image>().color = diff > 0 ? HumanColor : IAColor;
-        ScoreBar.GetComponent<Slider>().value = Remap(diff, bestScore * 2, -bestScore * 2, 10, 0);
-        transform.GetChild(0).GetChild(1).GetChild(0).GetChild(0).GetComponent<Text>().text = Mathf.Floor(HumanScore).ToString();
-        transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetComponent<Text>().text = IAScore.ToString();
+        foreach (GameObject scorebar in ScoreBars)
+        {
+            scorebar.GetComponent<Slider>().value = Remap(diff, bestScore * 2, -bestScore * 2, 10, 0);
+        }
+
+        foreach (Transform humanText in HumanScoreTexts)
+        {
+            humanText.GetChild(0).GetChild(0).GetComponent<Text>().text = Mathf.Floor(HumanScore).ToString(); ;
+        }
+
+        foreach (Transform iaText in IAScoreTexts)
+        {
+            iaText.GetChild(0).GetChild(0).GetComponent<Text>().text = IAScore.ToString(); 
+        }
     }
 
     IEnumerator UpdateScorePlayer()

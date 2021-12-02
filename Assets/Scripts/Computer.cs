@@ -9,7 +9,7 @@ namespace Assets.Scripts
         public GameManager.Owner status = GameManager.Owner.None;
         public float ComputerValue;
         public bool isBigComputer = false;
-        public int RoomID;
+        public Room RoomID;
 
         // FX
         public GameObject[] ComputerScreens;
