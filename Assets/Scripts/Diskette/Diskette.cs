@@ -9,6 +9,10 @@ public class Diskette : MonoBehaviour
     private float timer = 0f;
     private Rigidbody rigidbody;
 
+    public float coolDown = 180f;
+    private bool isSpawned;
+    public Vector3 disketteSpawnLocation;
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +41,23 @@ public class Diskette : MonoBehaviour
             rigidbody.isKinematic = true;
             timer = 0f;
         }
+        /*Case the player takes the spawned diskette*/
+        else if (!isDispensed && transform.parent != null)
+        {
+            isDispensed = true;
+        }
+
+        if (!isSpawned)
+        {
+            timer -= Time.deltaTime;
+            if (timer <= 0f)
+            {
+                isSpawned = true;
+                gameObject.SetActive(true);
+                transform.rotation = Quaternion.identity;
+                transform.position = disketteSpawnLocation;
+            }
+        }
     }
 
     /// <summary>
@@ -46,8 +67,7 @@ public class Diskette : MonoBehaviour
     {
         /*Disabling the gameObject*/
         gameObject.SetActive(false);
-
-        /**/
-        //GameManager.GetManager().disketteDispenser.DestroyDiskette();
+        isDispensed = false;
+        isSpawned = false;
     }
 }

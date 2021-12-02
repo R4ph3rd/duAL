@@ -408,7 +408,7 @@ MonoBehaviour:
       m_Calls: []
   handModel: {fileID: 7362742058120357049}
   swipeDir: 0
-  swipeDist: 0.05
+  swipeDist: 0.1
   swipeDetectTime: 0.5
   isSwiping: 0
 --- !u!114 &414194017
@@ -443,7 +443,7 @@ MonoBehaviour:
       m_Calls: []
   handModel: {fileID: 8995478559110001176}
   swipeDir: 1
-  swipeDist: 0.05
+  swipeDist: 0.1
   swipeDetectTime: 0.5
   isSwiping: 0
 --- !u!1 &4909997210436896580
@@ -2378,6 +2378,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 2.7755562e-17
       objectReference: {fileID: 0}
+    - target: {fileID: 4180710647801444095, guid: 1b43d6eb40db60b419700fd2677e79c4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4756413710029136320, guid: 1b43d6eb40db60b419700fd2677e79c4,
         type: 3}
       propertyPath: m_Name
@@ -2462,6 +2467,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 9.3132235e-10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756773751994327107, guid: 1b43d6eb40db60b419700fd2677e79c4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6897818203582767550, guid: 1b43d6eb40db60b419700fd2677e79c4,
         type: 3}
