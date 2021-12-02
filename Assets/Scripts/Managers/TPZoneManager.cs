@@ -30,7 +30,7 @@ public class TPZoneManager : MonoBehaviour
     {
         switch (humanManager.roomID)
         {
-            case 1:
+            case Room.bridge:
                 if (humanManager.isTPavalaible)
                 {
                     foreach (TeleportPoint tp in bridgeTeleportPoints)
@@ -55,7 +55,7 @@ public class TPZoneManager : MonoBehaviour
                     tp.SetLocked(true);
                 }
                 break;
-            case 2:
+            case Room.control:
                 if (humanManager.isTPavalaible)
                 {
                     foreach (TeleportPoint tp in controlRoomTeleportPoints)
@@ -80,7 +80,7 @@ public class TPZoneManager : MonoBehaviour
                     tp.SetLocked(true);
                 }
                 break;
-            case 3:
+            case Room.storage:
                 if (humanManager.isTPavalaible)
                 {
                     foreach (TeleportPoint tp in storageRoomTeleportPoints)

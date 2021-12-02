@@ -9,7 +9,7 @@ public class HumanManager : MonoBehaviour
     public bool isTPavalaible = true;
     public float TPDelay = 5.120f;
 
-    public int roomID = 1;
+    public Room roomID = Room.bridge;
 
     void Start()
     {

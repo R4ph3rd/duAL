@@ -5,7 +5,7 @@ using UnityEngine;
 public class IAManager : MonoBehaviour
 {
     public GameObject IACam;
-    public int RoomID = 1;
+    public Room RoomID = Room.bridge;
     public GameObject[] IACamTargets = new GameObject[3];
 
     private static IAManager _this = null;
@@ -41,14 +41,14 @@ public class IAManager : MonoBehaviour
         if (SwipeDir)
         {
             RoomID++;
-            RoomID = RoomID > 2 ? 0 : RoomID;
+            RoomID = (int)RoomID > 2 ? Room.bridge : RoomID;
         } else
         {
             RoomID--;
-            RoomID = RoomID < 0 ? 2 : RoomID;
+            RoomID = (int)RoomID < 0 ? Room.storage : RoomID;
         }
 
-        IACam.transform.position = IACamTargets[RoomID].transform.position;
-        IACam.transform.rotation = IACamTargets[RoomID].transform.rotation;
+        IACam.transform.position = IACamTargets[(int)RoomID].transform.position;
+        IACam.transform.rotation = IACamTargets[(int)RoomID].transform.rotation;
     }
 }

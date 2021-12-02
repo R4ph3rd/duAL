@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Room { bridge = 0, storage =1, control =2};
+
 public class GameManager : MonoBehaviour
 {
 
