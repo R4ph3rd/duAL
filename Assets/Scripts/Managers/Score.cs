@@ -28,7 +28,8 @@ public class Score : MonoBehaviour
     {
         if (_this == null)
         {
-            _this = new Score();
+            _this = FindObjectOfType<Score>();
+            //_this = _this == null ? new Score() : _this;
         }
         return _this;
     }
@@ -59,8 +60,6 @@ public class Score : MonoBehaviour
     {
         float diff = HumanScore - IAScore;
         float bestScore = HumanScore >= IAScore ? HumanScore : IAScore;
-
-        print("diff : " + diff + " best score is " + bestScore);
 
         //ScoreFill.GetComponent<Image>().color = diff > 0 ? HumanColor : IAColor;
         ScoreBar.GetComponent<Slider>().value = Remap(diff, bestScore * 2, -bestScore * 2, 10, 0);

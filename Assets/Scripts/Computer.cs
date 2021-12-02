@@ -12,7 +12,7 @@ namespace Assets.Scripts
         public int RoomID;
 
         // FX
-        public GameObject ComputerScreen;
+        public GameObject[] ComputerScreens;
         public Material IAScreenMat, HumanScreenMat;
 
         private Score score;
@@ -33,11 +33,23 @@ namespace Assets.Scripts
             switch (owner)
             {
                 case GameManager.Owner.IA:
-                    if (IAScreenMat) ComputerScreen.GetComponent<Renderer>().material = IAScreenMat;
+                    if (IAScreenMat)
+                    {
+                        foreach (GameObject screen in ComputerScreens)
+                        {
+                            screen.GetComponent<Renderer>().material = IAScreenMat;
+                        }
+                    }
                     source.clip = sm.IAWinMiniGameSound;
                     break;
                 case GameManager.Owner.Human:
-                    if (HumanScreenMat) ComputerScreen.GetComponent<Renderer>().material = HumanScreenMat;
+                    if (HumanScreenMat)
+                    {
+                        foreach (GameObject screen in ComputerScreens)
+                        {
+                            screen.GetComponent<Renderer>().material = HumanScreenMat;
+                        }
+                    }
                     source.clip = sm.HumanWinMiniGameSound;
                     break;
                 default:
@@ -45,20 +57,24 @@ namespace Assets.Scripts
             }
 
             sm.PlaySound(source);
-            GetComponentInChildren<TextMesh>().text = owner.ToString();
+            print("this computer is now owned by : " + status.ToString());
         }
 
         public void CaptureComputer()
         {
             GameManager.Owner owner = GameManager.Owner.Human;
 
-            if (IAScreenMat) ComputerScreen.GetComponent<Renderer>().material = IAScreenMat;
+            if (IAScreenMat) {
+                foreach (GameObject screen in ComputerScreens)
+                {
+                    screen.GetComponent<Renderer>().material = HumanScreenMat;
+                }
+            }
             source.clip = sm.IAWinMiniGameSound;
             sm.PlaySound(source);
             status = owner;
 
-            GetComponentInChildren<TextMesh>().text = owner.ToString();
-            print(status.ToString());
+            print("this computer is now owned by : " + status.ToString());
         }
 
         public void FailedMiniGame(GameManager.Owner owner)
