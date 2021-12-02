@@ -12,11 +12,7 @@ public class IAManager : MonoBehaviour
     public GameObject[] UIGestureControls = new GameObject[3];
     public GameObject[] UIHackButtons = new GameObject[2];
 
-    //public Color HumanColor;
-    //public Color IAColor;
-    //public GameObject ScoreBar;
-    //private GameObject ScoreFill;
-    //private RectTransform ScorePos;
+    public Text cameraPlaceText;
 
     private static IAManager _this = null;
     public static IAManager GetIAManager()
@@ -75,12 +71,15 @@ public class IAManager : MonoBehaviour
         {
             case Room.bridge:
                 UIHackButtons[1].SetActive(true);
+                cameraPlaceText.text = "(BRIDGE)";
                 break;
             case Room.control:
                 UIHackButtons[1].SetActive(false);
+                cameraPlaceText.text = "(CONTROL ROOM)";
                 break;
             case Room.storage:
                 UIHackButtons[1].SetActive(true);
+                cameraPlaceText.text = "(STORAGE ROOM)";
                 break;
 
         }
