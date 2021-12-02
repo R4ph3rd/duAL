@@ -17,6 +17,7 @@ public class DiskettePort : MonoBehaviour
                 isDisketteIn = false;
                 diskette = null;
             }
+            
         }
     }
 
@@ -30,6 +31,7 @@ public class DiskettePort : MonoBehaviour
             newDiskette.transform.SetParent(this.transform);
             newDiskette.transform.localPosition = new Vector3(0, 0, 0);
             diskette = newDiskette;
+            GameManager.GetManager().TriggerDisketteSequence();
         }
     }
 
