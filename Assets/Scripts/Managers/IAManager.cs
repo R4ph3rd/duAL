@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts;
 
 public class IAManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class IAManager : MonoBehaviour
     public GameObject[] IACamTargets = new GameObject[3];
 
     public GameObject[] UIGestureControls = new GameObject[3];
-    public GameObject[] UIHackButtons = new GameObject[2];
+    public GameObject[] UIHackButtons = new GameObject[5];
 
     public Text cameraPlaceText;
 
@@ -26,7 +27,7 @@ public class IAManager : MonoBehaviour
     void Start()
     {
         ChangeCam(true);
-        
+        UpdateUIDisplay();
     }
 
     void Update()
@@ -70,15 +71,15 @@ public class IAManager : MonoBehaviour
         switch (RoomID)
         {
             case Room.bridge:
-                UIHackButtons[1].SetActive(true);
+                ToggleButtons(false, false, true, false, false);
                 cameraPlaceText.text = "(BRIDGE)";
                 break;
             case Room.control:
-                UIHackButtons[1].SetActive(false);
+                ToggleButtons(true, true, false, false, false);
                 cameraPlaceText.text = "(CONTROL ROOM)";
                 break;
             case Room.storage:
-                UIHackButtons[1].SetActive(true);
+                ToggleButtons(false, false, false, true, true);
                 cameraPlaceText.text = "(STORAGE ROOM)";
                 break;
 
@@ -95,5 +96,14 @@ public class IAManager : MonoBehaviour
                 UIGestureControls[i].SetActive(false);
             }
         }
+    }
+
+    private void ToggleButtons(bool c1, bool c2, bool c3, bool c4, bool c5)
+    {
+        UIHackButtons[0].SetActive(c1);
+        UIHackButtons[1].SetActive(c2);
+        UIHackButtons[2].SetActive(c3);
+        UIHackButtons[3].SetActive(c4);
+        UIHackButtons[4].SetActive(c5);
     }
 }
