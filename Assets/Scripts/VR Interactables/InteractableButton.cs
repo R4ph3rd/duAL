@@ -7,11 +7,15 @@ namespace Valve.VR.InteractionSystem.Sample
 {
     public class InteractableButton : MonoBehaviour
     {
+        public InteractableKeyboard_MiniGame computerParent;
         public void ButtonHasBeenTouched()
         {
-            if (transform.parent)
+            if (computerParent.isMiniGamePlaying)
             {
-                transform.GetComponentInParent<InteractableKeyboard_MiniGame>().ButtonPushed(gameObject);
+                computerParent.ButtonPushed(gameObject);
+            } else
+            {
+                print("Sorry, but mini game hasn't been launched");
             }
         }
 

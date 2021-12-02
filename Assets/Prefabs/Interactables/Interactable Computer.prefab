@@ -46,9 +46,106 @@ Transform:
   - {fileID: 267875956254358090}
   - {fileID: 5226628074207260351}
   - {fileID: 3418086543114076991}
+  - {fileID: 6632349111114896070}
   m_Father: {fileID: 6665907195682713984}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3811865237793455087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6407135775646700630}
+  - component: {fileID: 1785271663377303082}
+  - component: {fileID: 8505905159343857118}
+  - component: {fileID: 3983609535280976529}
+  m_Layer: 0
+  m_Name: Plane (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6407135775646700630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3811865237793455087}
+  m_LocalRotation: {x: 0.49001482, y: -0.25839695, z: 0.1614052, w: 0.8167404}
+  m_LocalPosition: {x: -0.17312533, y: -0.16186059, z: -0.24737929}
+  m_LocalScale: {x: 0.075, y: 0.075, z: 0.075}
+  m_Children: []
+  m_Father: {fileID: 4494326794978337127}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 62.109, y: -34.344, z: 1.276}
+--- !u!33 &1785271663377303082
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3811865237793455087}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &8505905159343857118
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3811865237793455087}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3983609535280976529
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3811865237793455087}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &5414797496657639031
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,6 +157,7 @@ GameObject:
   - component: {fileID: 6665907195682713984}
   - component: {fileID: 8978259091440263386}
   - component: {fileID: 3005291601973250541}
+  - component: {fileID: 5703095688516343308}
   - component: {fileID: 1551711141908762367}
   m_Layer: 0
   m_Name: Interactable Computer
@@ -82,6 +180,8 @@ Transform:
   - {fileID: 2465709587918525763}
   - {fileID: 2465709586630385518}
   - {fileID: 2465709586783764891}
+  - {fileID: 4494326794978337127}
+  - {fileID: 8010321199744743098}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -101,9 +201,9 @@ MonoBehaviour:
   ComputerValue: 0
   isBigComputer: 0
   RoomID: 0
-  ComputerScreen: {fileID: 0}
-  IAScreenMat: {fileID: 0}
-  HumanScreenMat: {fileID: 0}
+  ComputerScreens: []
+  IAScreenMat: {fileID: 2100000, guid: f07a978511ac349478868076868ea7b2, type: 2}
+  HumanScreenMat: {fileID: 2100000, guid: 8ce871d24c7514a4990cc4ae1d117826, type: 2}
 --- !u!114 &3005291601973250541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,20 +216,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca3f9d262b3e224cb1df66f7b848479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HumanMiniGameUI: {fileID: 0}
-  progressionBar: {fileID: 0}
-  RemainingSteps: {fileID: 0}
+  HumanCam: {fileID: 0}
+  ButtonsParent: {fileID: 2989305358678612769}
+  StartButton: {fileID: 3414506859796987539}
+  GameScreenTemplate: {fileID: 6847338290321600737, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+    type: 3}
+  ActiveMiniGameScreens:
+  - {fileID: 6907516232320722436}
+  - {fileID: 3811865237793455087}
   ButtonStatus:
+  - {fileID: 2100000, guid: 0d052e74858aed24fae9fa56a405092c, type: 2}
+  - {fileID: 2100000, guid: e56e0f2ad4c661c4fa51ccf18203aeee, type: 2}
+  - {fileID: 2100000, guid: 481830ef639dac1428d6ddf6a4463c6c, type: 2}
+  - {fileID: 2100000, guid: b7acd82641fb2124f8bae664cca974dd, type: 2}
+  InteractableStatus:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  HumanColor: {r: 0.20741367, g: 0.5566038, b: 0.24477756, a: 1}
+  IAColor: {r: 0.8862745, g: 0.2117647, b: 0.2117647, a: 1}
   ErrorMargin: 0.5
-  minValueToWin: 0.5
+  minRatioToWin: 0.5
   StepDelay: 1
   maxSteps: 20
   blinkRepeat: 6
   blinkFrequence: 0.3
+--- !u!114 &5703095688516343308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5414797496657639031}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a018fe76c0cb2484caa3a7681a6fe40b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  QTEMiniGameUI: {fileID: 0}
+  progressionBar: {fileID: 0}
+  LedImg: {fileID: 0}
+  NextGestureImage: {fileID: 0}
+  GesturesImg:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  LedStatus:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  EndQTEScreen:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  RemainingSteps: {fileID: 0}
+  ErrorMargin: 0.5
+  minValueToWin: 0.5
+  StepDelay: 1
+  maxSteps: 20
 --- !u!82 &1551711141908762367
 AudioSource:
   m_ObjectHideFlags: 0
@@ -226,6 +370,134 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &6606803526187331350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4494326794978337127}
+  m_Layer: 0
+  m_Name: Active game screens
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4494326794978337127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6606803526187331350}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.13758302, y: 0.1139071, z: 0.028919518}
+  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
+  m_Children:
+  - {fileID: 1714688206158096192}
+  - {fileID: 6407135775646700630}
+  m_Father: {fileID: 6665907195682713984}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6907516232320722436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1714688206158096192}
+  - component: {fileID: 581381634414568452}
+  - component: {fileID: 8064696165333517365}
+  - component: {fileID: 1145694893875397075}
+  m_Layer: 0
+  m_Name: Plane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1714688206158096192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6907516232320722436}
+  m_LocalRotation: {x: 0.49001482, y: -0.25839695, z: 0.1614052, w: 0.8167404}
+  m_LocalPosition: {x: 0.49137497, y: -0.16186059, z: 0.2506206}
+  m_LocalScale: {x: 0.075, y: 0.075, z: 0.075}
+  m_Children: []
+  m_Father: {fileID: 4494326794978337127}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 62.109, y: -34.344, z: 1.276}
+--- !u!33 &581381634414568452
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6907516232320722436}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &8064696165333517365
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6907516232320722436}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1145694893875397075
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6907516232320722436}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &320038375335829309
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -310,6 +582,368 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1979281441348328765, guid: fc662c03de9a94e4db32f32f05809d6a,
     type: 3}
   m_PrefabInstance: {fileID: 320038375335829309}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1257571576729181547
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2465709586783764891}
+    m_Modifications:
+    - target: {fileID: 2930659248211060211, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6632349111114896065}
+    - target: {fileID: 2930659248211060211, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659248211060211, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractableKeyboard_MiniGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659248214147204, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6632349111114896065}
+    - target: {fileID: 2930659248214147204, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659248214147204, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractableKeyboard_MiniGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659248302339195, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6632349111114896065}
+    - target: {fileID: 2930659248302339195, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659248302339195, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractableKeyboard_MiniGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659248435262341, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6632349111114896065}
+    - target: {fileID: 2930659248435262341, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659248435262341, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractableKeyboard_MiniGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659248500859810, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6632349111114896065}
+    - target: {fileID: 2930659248500859810, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659248500859810, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractableKeyboard_MiniGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659248744042418, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659248744042418, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6632349111114896065}
+    - target: {fileID: 2930659248744042418, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659248744042418, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659248744042418, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659248793822724, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6632349111114896065}
+    - target: {fileID: 2930659248793822724, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659248793822724, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractableKeyboard_MiniGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659248903006929, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6632349111114896065}
+    - target: {fileID: 2930659248903006929, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659248903006929, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractableKeyboard_MiniGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659249001978316, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6632349111114896065}
+    - target: {fileID: 2930659249001978316, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659249001978316, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractableKeyboard_MiniGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659249196298748, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6632349111114896065}
+    - target: {fileID: 2930659249196298748, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659249196298748, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractableKeyboard_MiniGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659249240162881, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6632349111114896065}
+    - target: {fileID: 2930659249240162881, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659249240162881, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractableKeyboard_MiniGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659249428677798, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6632349111114896065}
+    - target: {fileID: 2930659249428677798, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659249428677798, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractableKeyboard_MiniGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659249471786076, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6632349111114896065}
+    - target: {fileID: 2930659249471786076, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659249471786076, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractableKeyboard_MiniGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659249482621900, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6632349111114896065}
+    - target: {fileID: 2930659249482621900, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659249482621900, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractableKeyboard_MiniGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659249486859956, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6632349111114896065}
+    - target: {fileID: 2930659249486859956, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659249486859956, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractableKeyboard_MiniGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659249549201996, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6632349111114896065}
+    - target: {fileID: 2930659249549201996, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659249549201996, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractableKeyboard_MiniGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659249929711939, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6632349111114896065}
+    - target: {fileID: 2930659249929711939, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930659249929711939, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractableKeyboard_MiniGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968149896824006902, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968149896824006902, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5582524892193197995, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: m_Name
+      value: Interactable keyboard example
+      objectReference: {fileID: 0}
+    - target: {fileID: 5582524892193197997, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 5582524892193197997, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 5582524892193197997, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.184
+      objectReference: {fileID: 0}
+    - target: {fileID: 5582524892193197997, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.164
+      objectReference: {fileID: 0}
+    - target: {fileID: 5582524892193197997, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5582524892193197997, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5582524892193197997, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5582524892193197997, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5582524892193197997, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5582524892193197997, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5582524892193197997, guid: 86f583aeca2dd98419ef1dc698f68f19,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 86f583aeca2dd98419ef1dc698f68f19, type: 3}
+--- !u!114 &6632349111114896065 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5582524892193197994, guid: 86f583aeca2dd98419ef1dc698f68f19,
+    type: 3}
+  m_PrefabInstance: {fileID: 1257571576729181547}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca3f9d262b3e224cb1df66f7b848479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &6632349111114896070 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5582524892193197997, guid: 86f583aeca2dd98419ef1dc698f68f19,
+    type: 3}
+  m_PrefabInstance: {fileID: 1257571576729181547}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1783564234215368567
 PrefabInstance:
@@ -481,7 +1115,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 860d85d8c2cd6fb419b78718d67879ce,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 860d85d8c2cd6fb419b78718d67879ce, type: 3}
@@ -576,7 +1210,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 860d85d8c2cd6fb419b78718d67879ce,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 860d85d8c2cd6fb419b78718d67879ce, type: 3}
@@ -933,6 +1567,81 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2465709586783764891}
     m_Modifications:
+    - target: {fileID: 1940178902647365331, guid: fc662c03de9a94e4db32f32f05809d6a,
+        type: 3}
+      propertyPath: buttonDown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940178902647365331, guid: fc662c03de9a94e4db32f32f05809d6a,
+        type: 3}
+      propertyPath: onButtonIsPressed.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940178902647365331, guid: fc662c03de9a94e4db32f32f05809d6a,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940178902647365331, guid: fc662c03de9a94e4db32f32f05809d6a,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3005291601973250541}
+    - target: {fileID: 1940178902647365331, guid: fc662c03de9a94e4db32f32f05809d6a,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940178902647365331, guid: fc662c03de9a94e4db32f32f05809d6a,
+        type: 3}
+      propertyPath: onButtonIsPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940178902647365331, guid: fc662c03de9a94e4db32f32f05809d6a,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940178902647365331, guid: fc662c03de9a94e4db32f32f05809d6a,
+        type: 3}
+      propertyPath: onButtonIsPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3005291601973250541}
+    - target: {fileID: 1940178902647365331, guid: fc662c03de9a94e4db32f32f05809d6a,
+        type: 3}
+      propertyPath: onButtonIsPressed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940178902647365331, guid: fc662c03de9a94e4db32f32f05809d6a,
+        type: 3}
+      propertyPath: onButtonIsPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartMiniGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940178902647365331, guid: fc662c03de9a94e4db32f32f05809d6a,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractableKeyboard_MiniGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940178902647365331, guid: fc662c03de9a94e4db32f32f05809d6a,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940178902647365331, guid: fc662c03de9a94e4db32f32f05809d6a,
+        type: 3}
+      propertyPath: onButtonIsPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractableKeyboard_MiniGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940178902647365331, guid: fc662c03de9a94e4db32f32f05809d6a,
+        type: 3}
+      propertyPath: onButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940178902647365331, guid: fc662c03de9a94e4db32f32f05809d6a,
+        type: 3}
+      propertyPath: onButtonIsPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1979281441348328765, guid: fc662c03de9a94e4db32f32f05809d6a,
         type: 3}
       propertyPath: m_RootOrder
@@ -1010,6 +1719,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 0c0963341f4996b42929ecf2f79ed59f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc662c03de9a94e4db32f32f05809d6a, type: 3}
+--- !u!1 &3414506859796987539 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1980011018995753105, guid: fc662c03de9a94e4db32f32f05809d6a,
+    type: 3}
+  m_PrefabInstance: {fileID: 3753937627629002242}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3418086543114076991 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1979281441348328765, guid: fc662c03de9a94e4db32f32f05809d6a,
@@ -1525,6 +2240,151 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1979281441348328765, guid: fc662c03de9a94e4db32f32f05809d6a,
     type: 3}
   m_PrefabInstance: {fileID: 6265592675625233433}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6778446892910692243
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6665907195682713984}
+    m_Modifications:
+    - target: {fileID: 2916139215607131958, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_Name
+      value: Score bar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3931657839812915451, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6847338290321600737, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_Name
+      value: MiniGame Screen
+      objectReference: {fileID: 0}
+    - target: {fileID: 6847338290321600737, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932503271375658136, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cde44a3ec0267da40914a5b7bc8aa00c, type: 3}
+--- !u!224 &8010321199744743098 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6778446892910692243}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7281697919033364050
 PrefabInstance:

@@ -9,14 +9,20 @@ using Assets.Scripts;
 public class InteractableKeyboard_MiniGame : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Camera HumanCam;
     private List<GameObject> Buttons = new List<GameObject>();
-    public GameObject HumanMiniGameUI;
+    public GameObject ButtonsParent;
+    public GameObject StartButton;
+    public GameObject ActiveMiniGameScreens;
 
-    public Slider progressionBar;
-    public Text RemainingSteps;
+    private List<Slider> progressionBar = new List<Slider>();
+    private List<Text> RemainingSteps = new List<Text>();
     public Material[] ButtonStatus = new Material[4]; // 0 : neutral | 1 : to push | 2 : success | 3 : wrong 
-    //public Sprite[] LedStatus = new Sprite[3];
+    public Material[] InteractableStatus = new Material[2]; // active / inactive;
+    public Color HumanColor;
+    public Color IAColor;
 
+    public bool isMiniGamePlaying = false;
     private GameObject NextKey = null;
     private int InitialNumberOfSteps;
     private int NumberOfSteps;
@@ -24,48 +30,89 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
     private int StepSuccess = 0;
 
     public float ErrorMargin = .5f;
-    public float minValueToWin = .5f;
-    public float StepDelay = 1f;
+    public float minRatioToWin = .5f;
+    public float StepDelay = 2f;
     public int maxSteps = 20;
+    public int minSteps = 8;
     public int blinkRepeat = 6;
     public float blinkFrequence = .3f;
 
     private SoundManager sm;
     private AudioSource source;
 
-    void Start(GameObject ButtonsParent)
+    void Start()
     {
         sm = SoundManager.GetSoundManager();
         source = GetComponent<AudioSource>();
 
-        Transform[] buttons = ButtonsParent.GetComponentsInChildren<Transform>();
+        foreach(Canvas cnv in ActiveMiniGameScreens.GetComponentsInChildren<Canvas>())
+        {
+            Slider Progbar = cnv.GetComponentInChildren<Slider>(true);
+            Progbar.maxValue = maxSteps;
+            Progbar.minValue = minSteps;
+            progressionBar.Add(Progbar);
+            RemainingSteps.Add(cnv.transform.GetChild(2).GetChild(0).GetComponent<Text>());
+        }
 
+        if (HumanCam != null) { }
+        else
+        {
+            HumanCam = GameObject.Find("VRCamera").GetComponent<Camera>();
+        }
+
+        Transform[] buttons = ButtonsParent.GetComponentsInChildren<Transform>();
+        print("buttons are " + buttons.Length);
         foreach(Transform button in buttons)
         {
             if (button.gameObject.name.Contains("Push button"))
             {
                 Buttons.Add(button.gameObject);
-
             }
         }
+
+        print("buttons length : " + Buttons.Count);
+
+        // Instantiate game screens
+        //foreach(GameObject ActiveScreen in ActiveMiniGameScreens)
+        //{
+        //    GameObject screen = Instantiate(GameScreenTemplate);
+        //    screen.transform.position = ActiveScreen.transform.position;
+        //    screen.transform.localRotation = ActiveScreen.transform.rotation;
+        //    screen.transform.parent = ActiveScreen.transform;
+        //    screen.GetComponent<Canvas>().worldCamera = HumanCam;
+        //    screen.SetActive(false);
+        //    GameScreensCanvas.Add(screen);
+        //}
     }
 
 
-    public void StartMiniGame(GameObject PlaypauseBtn)
+    public void StartMiniGame()
     {
-        PlaypauseBtn.GetComponentInChildren<Renderer>().material = ButtonStatus[1];
-        HumanMiniGameUI.SetActive(true);
-        ResetUI();
-        resetStatus();
-        StartCoroutine(GenerateStep());
+        if (!isMiniGamePlaying)
+        {
+            isMiniGamePlaying = !isMiniGamePlaying;
+
+            ResetUI();
+            resetStatus();
+            StartCoroutine(GenerateStep());
+            StartButton.GetComponentInChildren<Renderer>().material = InteractableStatus[1];
+            ActiveMiniGameScreens.SetActive(true);
+        }
     }
 
     public void ButtonPushed(GameObject btn)
     {
+        print(btn.name + "has been touched, expected : " + NextKey.name);
         if (btn.name == NextKey.name)
         {
             StepSuccess++;
             print("great ! score : " + StepSuccess);
+
+            foreach (Slider progBar in progressionBar)
+            {
+                progBar.value = StepSuccess;
+            }
+
             SuccessStepFX(btn);
         } else
         {
@@ -93,6 +140,8 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
         source.clip = sm.SuccessStepSound;
         sm.PlaySound(source);
         btn.GetComponentInChildren<Renderer>().material = ButtonStatus[2];
+
+        StartCoroutine(FadeKey(btn));
     }
 
     void ResetUI()
@@ -101,14 +150,19 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
         {
             btn.GetComponentInChildren<Renderer>().material = ButtonStatus[0];
         }
+        StartButton.GetComponentInChildren<Renderer>().material = InteractableStatus[0];
     }
 
     void resetStatus()
     {
-        InitialNumberOfSteps = (int)Random.Range(8, maxSteps);
+        InitialNumberOfSteps = (int)Random.Range(minSteps, maxSteps);
         NumberOfSteps = InitialNumberOfSteps;
         StepSuccess = 0;
-        progressionBar.value = 0;
+
+        foreach (Slider progBar in progressionBar)
+        {
+            progBar.value = 0;
+        }
     }
 
     IEnumerator GenerateStep()
@@ -127,9 +181,15 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
             }
 
             NextKey = Buttons[Random.Range(0, Buttons.Count)];
+            //print("generate step :" + NextKey.name);
             StartCoroutine(FadeNextStep());
             NumberOfSteps--;
-            RemainingSteps.text = NumberOfSteps.ToString();
+
+            foreach (Text txt in RemainingSteps)
+            {
+                txt.text = NumberOfSteps.ToString();
+            }
+
             WaitingForKey = true;
         }
         else
@@ -156,7 +216,7 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
         ResetUI();
 
         Debug.Log("Score : " + StepSuccess + " / " + InitialNumberOfSteps + " = " + ((float)StepSuccess / (float)InitialNumberOfSteps));
-        if (((float)StepSuccess / (float)InitialNumberOfSteps) > minValueToWin)
+        if (((float)StepSuccess / (float)InitialNumberOfSteps) > minRatioToWin)
         {
             Debug.Log("-- QTE mini game success -- ");
             GetComponent<Computer>().CaptureComputer(GameManager.Owner.Human);
@@ -176,12 +236,13 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
         resetStatus();
 
         StartCoroutine(FadeQTEUI());
+        isMiniGamePlaying = false;
     }
 
     IEnumerator FadeQTEUI()
     {
         yield return new WaitForSecondsRealtime((blinkFrequence * blinkRepeat) + 1);
-        HumanMiniGameUI.SetActive(false);
+        ActiveMiniGameScreens.SetActive(false);
     }
 
     IEnumerator BlinkKeyboard(int GameResult, int i)
