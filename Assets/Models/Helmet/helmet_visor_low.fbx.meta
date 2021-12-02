@@ -3,7 +3,12 @@ guid: a5fd44bb567c50e4e91c1f074b3cd8f1
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_visor
+    second: {fileID: 2100000, guid: 2ae08d93f54cadf40b04e9662b7dd592, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

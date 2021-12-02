@@ -10,7 +10,6 @@ public class LeapSwipeDetector : Detector
     public enum SwipingDirection { left, right, down, up};
 
     public HandModelBase handModel = null;
-    //public Chirality actionHandedness = Chirality.Left;
     public SwipingDirection swipeDir = SwipingDirection.left;
     private Vector3 swipeVector;
     public float swipeDist = 0.05f;
@@ -56,7 +55,7 @@ public class LeapSwipeDetector : Detector
             //Vector3 crossProdEnd = Vector3.Project(hand.PalmPosition.ToVector3(), swipeVector);
             float dist = Vector3.Dot(hand.PalmPosition.ToVector3() - initHandPos, swipeVector);
 
-            if (dist >= swipeDist && !isSwiping)
+            if (handModel.IsTracked && dist >= swipeDist && !isSwiping)
             {
                 isSwiping = true;
                 OnActivate.Invoke();
