@@ -1323,13 +1323,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackedHandModel: {fileID: 0}
-  robotHeadIkTarget: {fileID: 0}
-  robotRotatingBase: {fileID: 0}
-  rotationIncreaseFactor: 650
+  robotHeadIkTarget: {fileID: 9034218669210713264}
+  robotRotatingBase: {fileID: 8187148101507656490}
+  rotationIncreaseFactor: 850
   translationIncreaseFactor: 2
-  upperWrenchIKTarget: {fileID: 0}
-  lowerWrenchIKTarget: {fileID: 0}
-  attachmentPoint: {fileID: 0}
+  upperWrenchIKTarget: {fileID: 9034218669417052841}
+  lowerWrenchIKTarget: {fileID: 9034218669712722932}
+  attachmentPoint: {fileID: 1006839630}
 --- !u!114 &9034218669821761027
 MonoBehaviour:
   m_ObjectHideFlags: 0
