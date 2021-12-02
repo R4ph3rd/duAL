@@ -25,6 +25,8 @@ namespace Assets.Scripts
             sm = SoundManager.GetSoundManager();
             source = GetComponent<AudioSource>();
             ComputerValue = isBigComputer ? score.BigComputerValue : score.TinyComputerValue;
+
+            CaptureComputer(status);
         }
 
         public void CaptureComputer(GameManager.Owner owner)
