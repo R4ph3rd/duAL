@@ -30,10 +30,7 @@ public class IAManager : MonoBehaviour
     void Start()
     {
         ChangeCam(true);
-        ScoreFill = ScoreBar.transform.GetChild(2).GetChild(0).gameObject;
-        ScorePos = ScoreFill.GetComponent<RectTransform>();
-        ScoreBar.transform.GetChild(1).GetComponent<Image>().color = IAColor;
-        ScoreFill.GetComponent<Image>().color = HumanColor;
+        
     }
 
     void Update()
