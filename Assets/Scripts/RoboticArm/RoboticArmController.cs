@@ -6,6 +6,8 @@ using Leap;
 
 public class RoboticArmController : MonoBehaviour
 {
+    public GameManager gameManager;
+
     [Tooltip("The hand model to track")]
     public HandModelBase trackedHandModel;
 
@@ -46,15 +48,25 @@ public class RoboticArmController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hand = trackedHandModel.GetLeapHand();
+        if (GameManager.GetManager().aiPlayer.RoomID == Room.storage)
+        {
+            
+            hand = trackedHandModel.GetLeapHand();
+            if ((hand.IsLeft && trackedHandModel.Handedness == Chirality.Left) || (hand.IsRight && trackedHandModel.Handedness == Chirality.Right))
+            {
+                Vector3 handoffset = handFormerPosition - hand.PalmPosition.ToVector3();
 
-        Vector3 handoffset = handFormerPosition - hand.PalmPosition.ToVector3();
+                handFormerPosition = hand.PalmPosition.ToVector3();
+
+                /*Affecting each coordinate of the handOffset vector3 to the robot position*/
+                robotRotatingBase.transform.Rotate(Vector3.up, handoffset.x * rotationIncreaseFactor, Space.World);
+                robotHeadIkTarget.transform.Translate(new Vector3(0, -handoffset.z * translationIncreaseFactor, handoffset.y * translationIncreaseFactor), Space.Self);
+            }
+        }
         
-        handFormerPosition = hand.PalmPosition.ToVector3();
+        
 
-        /*Affecting each coordinate of the handOffset vector3 to the robot position*/
-        robotRotatingBase.transform.Rotate(Vector3.up, handoffset.x*rotationIncreaseFactor,Space.World);
-        robotHeadIkTarget.transform.Translate(new Vector3(0, -handoffset.z * translationIncreaseFactor, handoffset.y * translationIncreaseFactor), Space.Self);
+
     }
 
     public void OnPinchDetected()

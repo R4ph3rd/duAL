@@ -9,12 +9,16 @@ public class Dispenser : MonoBehaviour
 
     public void LaunchProjectile()
     {
-        GameObject projectile = DispenserManager.instance.InstantiateProjectile();
-        Projectile proj;
-        if(projectile.TryGetComponent<Projectile>(out proj))
+        if(GameManager.GetManager().aiPlayer.RoomID == Room.bridge)
         {
-            proj.InitializeProjectile(ejectionDir, ejectionForce,this.transform.position);
+            GameObject projectile = DispenserManager.instance.InstantiateProjectile();
+            Projectile proj;
+            if (projectile.TryGetComponent<Projectile>(out proj))
+            {
+                proj.InitializeProjectile(ejectionDir, ejectionForce, this.transform.position);
+            }
         }
+        
     }
 
     

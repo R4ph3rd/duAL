@@ -10,8 +10,9 @@ public class EnhancedTeleportPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.gameObject.tag == "Player")
         {
+            Debug.Log("ENHANCED TP POINT DETECTED");
             Player.instance.transform.position = target.transform.position;
         }
     }

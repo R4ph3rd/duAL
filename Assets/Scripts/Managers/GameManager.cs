@@ -10,13 +10,14 @@ public class GameManager : MonoBehaviour
 
     // Capture the flag manager
     public List<Computer> computers = new List<Computer>();
+    public IAManager aiPlayer;
 
     private static GameManager _this = null;
     public static GameManager GetManager()
     {
         if (_this == null)
         {
-            _this = new GameManager();
+            _this = FindObjectOfType<GameManager>(); ;
         }
         return _this;
     }
@@ -87,7 +88,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void TriggerGravityPower()
     {
-        if (!isGravityPowerTriggered)
+        if (!isGravityPowerTriggered && aiPlayer.RoomID != Room.storage)
         {
             Debug.Log("<color=red>GRAVITY SYSTEM DISABLED</color>");
             isGravityPowerTriggered = true;
