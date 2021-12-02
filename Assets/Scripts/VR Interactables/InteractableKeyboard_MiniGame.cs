@@ -33,12 +33,12 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
     private SoundManager sm;
     private AudioSource source;
 
-    void Start()
+    void Start(GameObject ButtonsParent)
     {
         sm = SoundManager.GetSoundManager();
         source = GetComponent<AudioSource>();
 
-        Transform[] buttons = GetComponentsInChildren<Transform>();
+        Transform[] buttons = ButtonsParent.GetComponentsInChildren<Transform>();
 
         foreach(Transform button in buttons)
         {
@@ -53,7 +53,6 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
 
     public void StartMiniGame(GameObject PlaypauseBtn)
     {
-        Debug.Log("start mini game ");
         PlaypauseBtn.GetComponentInChildren<Renderer>().material = ButtonStatus[1];
         HumanMiniGameUI.SetActive(true);
         ResetUI();
