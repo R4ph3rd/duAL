@@ -5,11 +5,12 @@ using Leap.Unity;
 using Leap;
 using UnityEngine.Events;
 
-public class LeapSwipeDetector : MonoBehaviour
+public class LeapSwipeDetector : Detector
 {
     public enum SwipingDirection { left, right, down, up};
 
     public HandModelBase handModel = null;
+    //public Chirality actionHandedness = Chirality.Left;
     public SwipingDirection swipeDir = SwipingDirection.left;
     private Vector3 swipeVector;
     public float swipeDist = 0.05f;
@@ -46,24 +47,27 @@ public class LeapSwipeDetector : MonoBehaviour
     IEnumerator CheckSwipe()
     {
         hand = handModel.GetLeapHand();
-        Vector3 initHandPos = hand.PalmPosition.ToVector3();
-        yield return new WaitForSeconds(swipeDetectTime);
-
-        //Vector3 crossProdInit = Vector3.Project(initHandPos, swipeVector);
-        //Vector3 crossProdEnd = Vector3.Project(hand.PalmPosition.ToVector3(), swipeVector);
-        float dist = Vector3.Dot(hand.PalmPosition.ToVector3()-initHandPos,swipeVector) ;
-
-        if(dist >= swipeDist && !isSwiping)
+        if ((hand.IsLeft && handModel.Handedness == Chirality.Left) || (hand.IsRight && handModel.Handedness == Chirality.Right)) 
         {
-            isSwiping = true;
-            OnActivate.Invoke();
-            Debug.Log($"<color=yellow>Swiped {swipeDir.ToString()}</color>");
-            yield return new WaitForSeconds(1f);
-            isSwiping = false;
+            Vector3 initHandPos = hand.PalmPosition.ToVector3();
+            yield return new WaitForSeconds(swipeDetectTime);
+
+            //Vector3 crossProdInit = Vector3.Project(initHandPos, swipeVector);
+            //Vector3 crossProdEnd = Vector3.Project(hand.PalmPosition.ToVector3(), swipeVector);
+            float dist = Vector3.Dot(hand.PalmPosition.ToVector3() - initHandPos, swipeVector);
+
+            if (dist >= swipeDist && !isSwiping)
+            {
+                isSwiping = true;
+                OnActivate.Invoke();
+                Debug.Log($"<color=yellow>Swiped {swipeDir.ToString()}</color>");
+                yield return new WaitForSeconds(1f);
+                isSwiping = false;
+            }
         }
     }
 
-    public UnityEvent OnActivate;
+    //public UnityEvent OnActivate;
 
     private Vector3 GetSwipingVector(SwipingDirection dir)
     {

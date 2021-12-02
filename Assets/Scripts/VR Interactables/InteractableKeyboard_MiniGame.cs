@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts;
+
+/* MUST BE ATTACHED TO AN OBJECT WITH Computer COMPONENT */
 
 public class InteractableKeyboard_MiniGame : MonoBehaviour
 {
@@ -9,7 +12,6 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
     private List<GameObject> Buttons = new List<GameObject>();
     public GameObject HumanMiniGameUI;
 
-    public AudioClip SuccessStepSound, FailureStepSound;
     public Slider progressionBar;
     public Text RemainingSteps;
     public Material[] ButtonStatus = new Material[4]; // 0 : neutral | 1 : to push | 2 : success | 3 : wrong 
@@ -27,9 +29,16 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
     public int maxSteps = 20;
     public int blinkRepeat = 6;
     public float blinkFrequence = .3f;
-    void Start()
+
+    private SoundManager sm;
+    private AudioSource source;
+
+    void Start(GameObject ButtonsParent)
     {
-        Transform[] buttons = GetComponentsInChildren<Transform>();
+        sm = SoundManager.GetSoundManager();
+        source = GetComponent<AudioSource>();
+
+        Transform[] buttons = ButtonsParent.GetComponentsInChildren<Transform>();
 
         foreach(Transform button in buttons)
         {
@@ -44,7 +53,6 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
 
     public void StartMiniGame(GameObject PlaypauseBtn)
     {
-        Debug.Log("start mini game ");
         PlaypauseBtn.GetComponentInChildren<Renderer>().material = ButtonStatus[1];
         HumanMiniGameUI.SetActive(true);
         ResetUI();
@@ -67,7 +75,8 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
 
     void MissStepFX(GameObject btn)
     {
-        PlaySound(FailureStepSound);
+        source.clip = sm.FailureStepSound;
+        sm.PlaySound(source);
         btn.GetComponentInChildren<Renderer>().material = ButtonStatus[3];
 
         StartCoroutine(FadeKey(btn));
@@ -75,11 +84,14 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
 
     void MissStepFX()
     {
-        PlaySound(FailureStepSound);
+        source.clip = sm.FailureStepSound;
+        sm.PlaySound(source);
     }
 
     void SuccessStepFX(GameObject btn)
     {
+        source.clip = sm.SuccessStepSound;
+        sm.PlaySound(source);
         btn.GetComponentInChildren<Renderer>().material = ButtonStatus[2];
     }
 
@@ -147,10 +159,12 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
         if (((float)StepSuccess / (float)InitialNumberOfSteps) > minValueToWin)
         {
             Debug.Log("-- QTE mini game success -- ");
+            GetComponent<Computer>().CaptureComputer(GameManager.Owner.Human);
         }
         else
         {
             Debug.Log("-- QTE mini game failed -- ");
+            GetComponent<Computer>().FailedMiniGame(GameManager.Owner.Human);
         }
 
         for (int i = 0; i < blinkRepeat; i++)
@@ -186,22 +200,6 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
             {
                 btn.GetComponentInChildren<Renderer>().material = ButtonStatus[0];
             }
-        }
-    }
-
-    private void PlaySound(AudioClip sound)
-    {
-        AudioSource audio = GetComponent<AudioSource>();
-        audio.clip = sound;
-
-        if (audio.isPlaying)
-        {
-            audio.time = 0;
-            audio.Play();
-        }
-        else
-        {
-            audio.Play();
         }
     }
 }

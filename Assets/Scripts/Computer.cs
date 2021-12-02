@@ -1,25 +1,30 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Assets.Scripts;
 
 namespace Assets.Scripts
 {
     public class Computer : MonoBehaviour
     {
         public GameManager.Owner status = GameManager.Owner.None;
+        public float ComputerValue;
+        public bool isBigComputer = false;
+        public int RoomID;
 
         // FX
-        public Material IAScreen, HumanScreen;
-        public AudioSource IAWinMiniGame, IALooseMiniGame, HumanWinMiniGame, HumanLooseMiniGame;
+        public GameObject ComputerScreen;
+        public Material IAScreenMat, HumanScreenMat;
 
-        void Start()
+        private Score score;
+        private SoundManager sm;
+        private AudioSource source;
+
+        public void Start()
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            score = Score.GetScore();
+            sm = SoundManager.GetSoundManager();
+            source = GetComponent<AudioSource>();
+            ComputerValue = isBigComputer ? score.BigComputerValue : score.TinyComputerValue;
         }
 
         public void CaptureComputer(GameManager.Owner owner)
@@ -28,14 +33,32 @@ namespace Assets.Scripts
             switch (owner)
             {
                 case GameManager.Owner.IA:
-                    PlaySound(IAWinMiniGame);
+                    if (IAScreenMat) ComputerScreen.GetComponent<Renderer>().material = IAScreenMat;
+                    source.clip = sm.IAWinMiniGameSound;
                     break;
                 case GameManager.Owner.Human:
-                    PlaySound(HumanWinMiniGame);
+                    if (HumanScreenMat) ComputerScreen.GetComponent<Renderer>().material = HumanScreenMat;
+                    source.clip = sm.HumanWinMiniGameSound;
                     break;
                 default:
                     break;
             }
+
+            sm.PlaySound(source);
+            GetComponentInChildren<TextMesh>().text = owner.ToString();
+        }
+
+        public void CaptureComputer()
+        {
+            GameManager.Owner owner = GameManager.Owner.Human;
+
+            if (IAScreenMat) ComputerScreen.GetComponent<Renderer>().material = IAScreenMat;
+            source.clip = sm.IAWinMiniGameSound;
+            sm.PlaySound(source);
+            status = owner;
+
+            GetComponentInChildren<TextMesh>().text = owner.ToString();
+            print(status.ToString());
         }
 
         public void FailedMiniGame(GameManager.Owner owner)
@@ -43,27 +66,15 @@ namespace Assets.Scripts
             switch (owner)
             {
                 case GameManager.Owner.IA:
-                    PlaySound(IALooseMiniGame);
+                    source.clip = sm.IALooseMiniGameSound;
                     break;
                 case GameManager.Owner.Human:
-                    PlaySound(HumanLooseMiniGame);
+                    source.clip = sm.HumanLooseMiniGameSound;
                     break;
                 default:
                     break;
             }
-        }
-
-        private void PlaySound(AudioSource sound)
-        {
-            if (sound.isPlaying)
-            {
-                sound.time = 0;
-                sound.Play();
-            }
-            else
-            {
-                sound.Play();
-            }
+            sm.PlaySound(source);
         }
     }
 }
