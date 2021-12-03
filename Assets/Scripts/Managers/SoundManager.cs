@@ -10,6 +10,9 @@ public class SoundManager : MonoBehaviour
     public AudioClip IAWinMiniGameSound, IALooseMiniGameSound, HumanWinMiniGameSound, HumanLooseMiniGameSound;
     public AudioClip SuccessStepSound, FailureStepSound;
 
+    //Intro sounds
+    public AudioClip warningVoice, entityDetectedVoice, containmentProtocolVoice;
+
     private static SoundManager _this = null;
     public static SoundManager GetSoundManager()
     {

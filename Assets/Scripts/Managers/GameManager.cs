@@ -4,9 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum Room { bridge = 0, storage =1, control =2};
+public enum State { Intro, Game, GameOver};
 
 public class GameManager : MonoBehaviour
 {
+    //GameState
+    public State gameState = State.Intro;
+    public AudioSource mainAudioSource;
+    public GameObject[] vfxGameObjects;
 
     // Capture the flag manager
     public List<Computer> computers = new List<Computer>();
@@ -49,6 +54,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(PlayIntroSequence());
+
         foreach (Computer c in FindObjectsOfType<Computer>()){
             computers.Add(c);
         }   
@@ -140,5 +147,25 @@ public class GameManager : MonoBehaviour
     {
         isPlayerHackingAIComputers = true;
         hackingTimer = 0f;
+    }
+
+    IEnumerator PlayIntroSequence()
+    {
+        yield return new WaitForSeconds(1f);
+        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().warningVoice);
+
+        yield return new WaitForSeconds(1f);
+        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().entityDetectedVoice);
+
+        yield return new WaitForSeconds(4f);
+        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().containmentProtocolVoice);
+
+        foreach(GameObject vfx in vfxGameObjects)
+        {
+            vfx.SetActive(true);
+        }
+
+        gameState = State.Game;
+
     }
 }
