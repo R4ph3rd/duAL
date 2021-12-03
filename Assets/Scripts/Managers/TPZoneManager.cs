@@ -12,6 +12,8 @@ public class TPZoneManager : MonoBehaviour
     public TeleportMarkerBase[] controlRoomTeleportPoints;
     public TeleportMarkerBase[] storageRoomTeleportPoints;
 
+
+
     private void Start()
     {
 
@@ -30,48 +32,58 @@ public class TPZoneManager : MonoBehaviour
     {
         if (humanManager.isTPavalaible)
         {
-            foreach (TeleportPoint tp in bridgeTeleportPoints)
-            {
-                tp.SetLocked(humanManager.roomID == Room.bridge);
-                SetTPPoint(tp, humanManager.roomID == Room.bridge);
-            }
+            transform.GetChild(0).gameObject.SetActive(true);
+            //foreach (TeleportMarkerBase tp in bridgeTeleportPoints)
+            //{
+            //    tp.SetLocked(humanManager.roomID == Room.bridge);
+            //    SetTPPoint(tp, humanManager.roomID == Room.bridge);
+            //}
 
-            foreach (TeleportPoint tp in controlRoomTeleportPoints)
-            {
-                tp.SetLocked(humanManager.roomID == Room.control);
-                SetTPPoint(tp, humanManager.roomID == Room.control);
-            }
+            //foreach (TeleportMarkerBase tp in controlRoomTeleportPoints)
+            //{
+            //    tp.SetLocked(humanManager.roomID == Room.control);
+            //    SetTPPoint(tp, humanManager.roomID == Room.control);
+            //}
 
-            foreach (TeleportPoint tp in storageRoomTeleportPoints)
-            {
-                tp.SetLocked(humanManager.roomID == Room.storage);
-                SetTPPoint(tp, humanManager.roomID == Room.storage);
-            }
+            //foreach (TeleportMarkerBase tp in storageRoomTeleportPoints)
+            //{
+            //    tp.SetLocked(humanManager.roomID == Room.storage);
+            //    SetTPPoint(tp, humanManager.roomID == Room.storage);
+            //}
         } else
         {
-            foreach (TeleportPoint tp in bridgeTeleportPoints)
-            {
-                tp.SetLocked(false);
-                SetTPPoint(tp, false);
-            }
+            //foreach (TeleportMarkerBase tp in bridgeTeleportPoints)
+            //{
+            //    tp.SetLocked(false);
+            //    SetTPPoint(tp, false);
+            //}
 
-            foreach (TeleportPoint tp in controlRoomTeleportPoints)
-            {
-                SetTPPoint(tp, false);
-                    tp.SetLocked(false);
-            }
+            //foreach (TeleportMarkerBase tp in controlRoomTeleportPoints)
+            //{
+            //    SetTPPoint(tp, false);
+            //        tp.SetLocked(false);
+            //}
 
-            foreach (TeleportPoint tp in storageRoomTeleportPoints)
-            {
-                SetTPPoint(tp, false);
-                tp.SetLocked(false);
-            }
+            //foreach (TeleportMarkerBase tp in storageRoomTeleportPoints)
+            //{
+            //    SetTPPoint(tp, false);
+            //    tp.SetLocked(false);
+            //}
+            transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 
     private void SetTPPoint(TeleportMarkerBase tp, bool val)
     {
-        if (tp.GetComponent<TeleportPoint>()) tp.GetComponent<TeleportPoint>().enabled = val;
-        if (tp.GetComponent<TeleportArea>()) tp.GetComponent<TeleportArea>().enabled = val;
+        if (tp.GetComponent<TeleportPoint>())
+        {
+            tp.GetComponent<TeleportPoint>().enabled = val;
+            tp.GetComponent<TeleportPoint>().locked = val;
+        }
+        if (tp.GetComponent<TeleportArea>())
+        {
+            tp.GetComponent<TeleportArea>().enabled = val;
+            tp.GetComponent<TeleportArea>().locked = val;
+        }
     }
 }

@@ -52,6 +52,7 @@ public class Diskette : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer <= 0f)
             {
+                print("timer cool " + timer);
                 isSpawned = true;
                 gameObject.SetActive(true);
                 transform.rotation = Quaternion.identity;
@@ -66,6 +67,7 @@ public class Diskette : MonoBehaviour
     public void ResetDiskette()
     {
         /*Disabling the gameObject*/
+        gameObject.transform.parent = null;
         gameObject.SetActive(false);
         isDispensed = false;
         isSpawned = false;

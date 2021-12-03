@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     private bool isGravityPowerTriggered = false;
 
     [Header("Diskette")]
-    public DisketteDispenser disketteDispenser; //UNUSED
+    //public DisketteDispenser disketteDispenser; //UNUSED
     public DiskettePort diskettePort;
     public float hackingTime = 20f;
     private bool isPlayerHackingAIComputers = false;
@@ -76,9 +76,14 @@ public class GameManager : MonoBehaviour
                 {
                     if(c.status == Owner.IA)
                     {
-                        c.status = Owner.None;
+                        c.CaptureComputer(Owner.None);
                     }
                 }
+
+                print("diskette reseted");
+                diskettePort.diskette.ResetDiskette();
+                isPlayerHackingAIComputers = false;
+                
                 /*Display a log on the AI interface*/
                 /*Play a hacking sound ?*/
             }
@@ -86,6 +91,7 @@ public class GameManager : MonoBehaviour
             else if((!diskettePort.isDisketteIn)&&(hackingTimer < hackingTime))
             {
                 Debug.Log("<color=red>Diskette removed before the end of the hacking sequence</color>");
+                isPlayerHackingAIComputers = false;
             }
         }
     }

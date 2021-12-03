@@ -32,6 +32,7 @@ public class HumanManager : MonoBehaviour
     {
         isTPavalaible = false;
         StartCoroutine(resetTPpower());
+        print("telport power");
     }
 
     IEnumerator resetTPpower()

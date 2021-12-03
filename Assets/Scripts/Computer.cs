@@ -13,7 +13,7 @@ namespace Assets.Scripts
 
         // FX
         public GameObject[] ComputerScreens;
-        public Material IAScreenMat, HumanScreenMat;
+        public Material IAScreenMat, HumanScreenMat, NoneScreenMat;
 
         private Score score;
         private SoundManager sm;
@@ -52,7 +52,15 @@ namespace Assets.Scripts
                             screen.GetComponent<Renderer>().material = HumanScreenMat;
                         }
                     }
-                    source.clip = sm.HumanWinMiniGameSound;
+                    break;
+                case GameManager.Owner.None:
+                    if (NoneScreenMat)
+                    {
+                        foreach (GameObject screen in ComputerScreens)
+                        {
+                            screen.GetComponent<Renderer>().material = NoneScreenMat;
+                        }
+                    }
                     break;
                 default:
                     break;

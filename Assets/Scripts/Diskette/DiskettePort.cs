@@ -5,7 +5,7 @@ using UnityEngine;
 public class DiskettePort : MonoBehaviour
 {
     public bool isDisketteIn=false;
-    private Diskette diskette;
+    public Diskette diskette;
 
     private void Update()
     {
