@@ -4,7 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Aurelien.unity
+    guid: 052f46bea75864f459bbfe36084b3923
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: b14f49d2a0792cd448b58b3fe36e5a13
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}
