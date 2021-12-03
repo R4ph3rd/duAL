@@ -50,6 +50,7 @@ public class
     private AudioSource source;
 
     private Computer BindedComputer;
+    public bool isMiniGameInstanceRunning = false;
 
     void Start()
     {
@@ -91,12 +92,20 @@ public class
 
     public void StartQTE(Computer computer)
     {
-        BindedComputer = computer;
-        Debug.Log("start qte mini game");
-        //QTEMiniGameUI.SetActive(true);
-        ResetUI();
-        resetStatus();
-        StartCoroutine(GenerateStep());
+        print("fuctioin called : " + computer.gameObject.name);
+        if (GetComponent<IAManager>().RoomID == computer.RoomID && !isMiniGameInstanceRunning)
+        {
+            isMiniGameInstanceRunning = true;
+            BindedComputer = computer;
+            Debug.Log("start qte mini game");
+            //QTEMiniGameUI.SetActive(true);
+            ResetUI();
+            resetStatus();
+            StartCoroutine(GenerateStep());
+        } else
+        {
+            print("you can't  hack a computer which is in another room.");
+        }
     }
 
     void MissStep()
@@ -175,6 +184,7 @@ public class
     IEnumerator FadeQTEUI()
     {
         yield return new WaitForSecondsRealtime(3);
+        isMiniGameInstanceRunning = false;
         //QTEMiniGameUI.SetActive(false);
     }
 }

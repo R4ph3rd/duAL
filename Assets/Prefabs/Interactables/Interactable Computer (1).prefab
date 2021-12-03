@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 61095217902047118}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.13758302, y: 0.1139071, z: 0.028919518}
+  m_LocalPosition: {x: -0.114, y: 0.1139071, z: -0.01}
   m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
   m_Children:
   - {fileID: 7661353257480909086}
@@ -803,6 +803,7 @@ MonoBehaviour:
   - {fileID: 0}
   IAScreenMat: {fileID: 2100000, guid: f07a978511ac349478868076868ea7b2, type: 2}
   HumanScreenMat: {fileID: 2100000, guid: f45d0d285502e024ea2a7b26b86e8d99, type: 2}
+  NoneScreenMat: {fileID: 0}
 --- !u!114 &8277028707892455797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1632,7 +1633,7 @@ PrefabInstance:
     - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.274
+      value: -0.21700001
       objectReference: {fileID: 0}
     - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
         type: 3}
@@ -1657,12 +1658,12 @@ PrefabInstance:
     - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.146
+      value: -0.18799981
       objectReference: {fileID: 0}
     - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.141
+      value: -0.10399982
       objectReference: {fileID: 0}
     - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
         type: 3}
@@ -1688,6 +1689,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MiniGame Screen (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6847338290321600737, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8932503271375658136, guid: cde44a3ec0267da40914a5b7bc8aa00c,
         type: 3}
@@ -2993,7 +2999,7 @@ PrefabInstance:
     - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.207
+      value: 0.264
       objectReference: {fileID: 0}
     - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
         type: 3}
@@ -3018,12 +3024,12 @@ PrefabInstance:
     - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.522
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.128
+      value: -0.091
       objectReference: {fileID: 0}
     - target: {fileID: 3547571216574984489, guid: cde44a3ec0267da40914a5b7bc8aa00c,
         type: 3}
@@ -3049,6 +3055,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MiniGame Screen
+      objectReference: {fileID: 0}
+    - target: {fileID: 6847338290321600737, guid: cde44a3ec0267da40914a5b7bc8aa00c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8932503271375658136, guid: cde44a3ec0267da40914a5b7bc8aa00c,
         type: 3}

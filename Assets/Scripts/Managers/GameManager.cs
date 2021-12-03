@@ -2,6 +2,7 @@ using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum Room { bridge = 0, storage =1, control =2};
 public enum State { Intro, Game, GameOver};
@@ -48,17 +49,34 @@ public class GameManager : MonoBehaviour
     private bool isPlayerHackingAIComputers = false;
     private float hackingTimer=0f;
 
+    public Canvas endscoreImg;
 
-    
+    public GameObject ScoreScreen;
 
+    private Score score;
+    public float gameduration = 5;
 
     void Start()
     {
         StartCoroutine(PlayIntroSequence());
 
+        StartCoroutine(EndGame());
+
         foreach (Computer c in FindObjectsOfType<Computer>()){
             computers.Add(c);
-        }   
+        }
+
+        score = Score.GetScore();
+    }
+
+    IEnumerator EndGame()
+    {
+        yield return new WaitForSecondsRealtime(gameduration * 60);
+        print("end game !");
+        
+        string winner = score.IAScore > score.HumanScore ? "IA" : score.IAScore == score.HumanScore ? "Nobody" : "Human";
+        endscoreImg.transform.GetChild(1).GetComponent<Text>().text = winner;
+        endscoreImg.gameObject.SetActive(true);
     }
 
     // Update is called once per frame

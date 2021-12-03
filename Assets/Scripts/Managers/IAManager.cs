@@ -16,6 +16,7 @@ public class IAManager : MonoBehaviour
     public Text cameraPlaceText;
 
     private static IAManager _this = null;
+    private IA_QTE_MiniGame miniGame;
     public static IAManager GetIAManager()
     {
         if (_this == null)
@@ -26,6 +27,7 @@ public class IAManager : MonoBehaviour
     }
     void Start()
     {
+        miniGame = GetComponent<IA_QTE_MiniGame>();
         //ChangeCam(true);
         IACam.transform.position = IACamTargets[(int)Room.storage].transform.position;
         IACam.transform.rotation = IACamTargets[(int)Room.storage].transform.rotation;
@@ -54,6 +56,7 @@ public class IAManager : MonoBehaviour
 
     public void ChangeCam(bool SwipeDir)
     {
+        if (miniGame.isMiniGameInstanceRunning) return;
         if (SwipeDir)
         {
             RoomID++;
