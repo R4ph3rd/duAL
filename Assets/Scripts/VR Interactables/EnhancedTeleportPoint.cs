@@ -13,6 +13,7 @@ public class EnhancedTeleportPoint : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             Debug.Log("ENHANCED TP POINT DETECTED");
+            HumanManager.instance.TeleportPower();
             Player.instance.transform.position = target.transform.position;
         }
     }
