@@ -58,7 +58,7 @@ public class RoboticArmController : MonoBehaviour
 
                 /*Affecting each coordinate of the handOffset vector3 to the robot position*/
                 robotRotatingBase.transform.Rotate(Vector3.up, handoffset.x * rotationIncreaseFactor, Space.World);
-                robotHeadIkTarget.transform.Translate(new Vector3(0, -handoffset.z * translationIncreaseFactor, handoffset.y * translationIncreaseFactor), Space.Self);
+                robotHeadIkTarget.transform.Translate(new Vector3(0, (-handoffset.z) * translationIncreaseFactor*1.5f, handoffset.y * translationIncreaseFactor), Space.Self);
             }
         }
         

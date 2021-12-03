@@ -7,7 +7,7 @@ using Assets.Scripts;
 public class IAManager : MonoBehaviour
 {
     public GameObject IACam;
-    public Room RoomID = Room.bridge;
+    public Room RoomID = Room.storage;
     public GameObject[] IACamTargets = new GameObject[3];
 
     public GameObject[] UIGestureControls = new GameObject[3];
@@ -26,7 +26,9 @@ public class IAManager : MonoBehaviour
     }
     void Start()
     {
-        ChangeCam(true);
+        //ChangeCam(true);
+        IACam.transform.position = IACamTargets[(int)Room.storage].transform.position;
+        IACam.transform.rotation = IACamTargets[(int)Room.storage].transform.rotation;
         UpdateUIDisplay();
     }
 
