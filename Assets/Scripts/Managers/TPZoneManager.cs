@@ -71,7 +71,7 @@ public class TPZoneManager : MonoBehaviour
 
     private void SetTPPoint(TeleportMarkerBase tp, bool val)
     {
-        if (tp.GetComponent<TeleportPoint>()) tp.GetComponent<TeleportPoint>().locked = val;
-        if (tp.GetComponent<TeleportArea>()) tp.GetComponent<TeleportArea>().locked = val;
+        if (tp.GetComponent<TeleportPoint>()) tp.GetComponent<TeleportPoint>().enabled = val;
+        if (tp.GetComponent<TeleportArea>()) tp.GetComponent<TeleportArea>().enabled = val;
     }
 }
