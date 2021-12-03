@@ -6,8 +6,6 @@ using Leap;
 
 public class RoboticArmController : MonoBehaviour
 {
-    public GameManager gameManager;
-
     [Tooltip("The hand model to track")]
     public HandModelBase trackedHandModel;
 
