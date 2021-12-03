@@ -160,12 +160,24 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(4f);
         mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().containmentProtocolVoice);
 
-        foreach(GameObject vfx in vfxGameObjects)
+        foreach (GameObject vfx in vfxGameObjects)
         {
             vfx.SetActive(true);
         }
 
         gameState = State.Game;
+
+        yield return new WaitForSeconds(5f);
+        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().rulesVoice);
+
+        yield return new WaitForSeconds(5f);
+        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().enemyTeleportVoice);
+
+        yield return new WaitForSeconds(5f);
+        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().instructionsTableVoice);
+
+        yield return new WaitForSeconds(8f);
+        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().roboticVoice);
 
     }
 }
