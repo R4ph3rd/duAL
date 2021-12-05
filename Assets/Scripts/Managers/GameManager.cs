@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     // Capture the flag manager
     public List<Computer> computers = new List<Computer>();
     public IAManager aiPlayer;
+    public GameObject aiInstructionsPanel;
 
     private static GameManager _this = null;
     public static GameManager GetManager()
@@ -74,7 +75,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(gameduration * 60);
         print("end game !");
         
-        string winner = score.IAScore > score.HumanScore ? "IA" : score.IAScore == score.HumanScore ? "Nobody" : "Human";
+        string winner = score.IAScore > score.HumanScore ? "AI" : score.IAScore == score.HumanScore ? "Nobody" : "Humanoïd Entity";
         endscoreImg.transform.GetChild(1).GetComponent<Text>().text = winner;
         endscoreImg.gameObject.SetActive(true);
     }
@@ -191,11 +192,15 @@ public class GameManager : MonoBehaviour
 
         gameState = State.Game;
 
+        
+
         yield return new WaitForSeconds(5f);
         mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().rulesVoice);
 
         yield return new WaitForSeconds(5f);
         mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().enemyTeleportVoice);
+
+        aiInstructionsPanel.SetActive(false);
 
         yield return new WaitForSeconds(5f);
         mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().instructionsTableVoice);
