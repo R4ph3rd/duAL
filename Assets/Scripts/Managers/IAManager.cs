@@ -37,16 +37,16 @@ public class IAManager : MonoBehaviour
     void Update()
     {
         //Debug
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            print("swipe left");
-            ChangeCam(false);
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            print("swipe right");
-            ChangeCam(true);
-        }
+        //if (Input.GetKeyDown(KeyCode.G))
+        //{
+        //    print("swipe left");
+        //    ChangeCam(false);
+        //}
+        //if (Input.GetKeyDown(KeyCode.H))
+        //{
+        //    print("swipe right");
+        //    ChangeCam(true);
+        //}
 
         /*Updating button display*/
         UpdateUIDisplay();

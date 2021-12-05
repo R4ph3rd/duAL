@@ -109,13 +109,13 @@ namespace Leap.Unity {
         if (deviceIsPresent) {
 
           if (enableRuntimeAdjustment) {
-            if (Input.GetKeyDown(stepUpKey)) {
-              roomScaleHeightOffset += stepSize;
-            }
+            //if (Input.GetKeyDown(stepUpKey)) {
+            //  roomScaleHeightOffset += stepSize;
+            //}
 
-            if (Input.GetKeyDown(stepDownKey)) {
-              roomScaleHeightOffset -= stepSize;
-            }
+            //if (Input.GetKeyDown(stepDownKey)) {
+            //  roomScaleHeightOffset -= stepSize;
+            //}
           }
 
           if (recenterOnUserPresence && !XRSupportUtil.IsLargePlayspace()) {
