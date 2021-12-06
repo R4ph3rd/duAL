@@ -1,62 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Diskette : MonoBehaviour
 {
     public float timeOut = 10f;
     public bool isDispensed = false;
     private float timer = 0f;
-    private Rigidbody rigidbody;
+    private Rigidbody rb;
 
     public float coolDown = 180f;
-    private bool isSpawned;
-    public Vector3 disketteSpawnLocation;
+    private bool isSpawned=true;
+    public GameObject disketteSpawnLocation;
+    private Renderer renderer;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
+        renderer = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*Case the Diskette is not carried*/
-        if (isDispensed && transform.parent == null)
+        if (isSpawned)
         {
-            rigidbody.useGravity = true;
-            rigidbody.isKinematic = false;
-            timer += Time.deltaTime;
-            if (timer >= timeOut)
+            /*Case the Diskette is not carried*/
+            if (isDispensed && (transform.parent == null || transform.parent.name == "DisketteSpawnPoint"))
             {
-                /*Resetting the diskette*/
-                ResetDiskette();
+                Debug.Log("<color=red>disappears</color>");
+                rb.useGravity = true;
+                rb.isKinematic = false;
+                timer += Time.deltaTime;
+                if (timer >= timeOut)
+                {
+                    /*Resetting the diskette*/
+                    StartCoroutine(ResetDiskette());
+                }
             }
-        }
-        else if(isDispensed && transform.parent != null)
-        {
-            rigidbody.useGravity = false;
-            rigidbody.isKinematic = true;
-            timer = 0f;
-        }
-        /*Case the player takes the spawned diskette*/
-        else if (!isDispensed && transform.parent != null)
-        {
-            isDispensed = true;
-        }
-
-        if (!isSpawned)
-        {
-            timer -= Time.deltaTime;
-            if (timer <= 0f)
+            else if (isDispensed && transform.parent != null)
             {
-                print("timer cool " + timer);
-                isSpawned = true;
-                gameObject.SetActive(true);
-                transform.rotation = Quaternion.identity;
-                transform.position = disketteSpawnLocation;
+                Debug.Log("<color=red>disappears2</color>");
+                rb.useGravity = false;
+                rb.isKinematic = true;
+                timer = 0f;
+            }
+            /*Case the player takes the spawned diskette*/
+            else if (!isDispensed && transform.parent != disketteSpawnLocation.transform)
+            {
+                Debug.Log("<color=red>dispensed</color>");
+                isDispensed = true;
             }
         }
     }
@@ -64,12 +60,27 @@ public class Diskette : MonoBehaviour
     /// <summary>
     /// Reset the diskette position if it is destroyed or after a successfull hacking
     /// </summary>
-    public void ResetDiskette()
+    public IEnumerator ResetDiskette()
     {
         /*Disabling the gameObject*/
-        gameObject.transform.parent = null;
-        gameObject.SetActive(false);
+        transform.parent = disketteSpawnLocation.transform;
+
+        transform.rotation = Quaternion.identity;
+        transform.localPosition = new Vector3(0, 0, 0);
+        renderer.enabled = false;
         isDispensed = false;
         isSpawned = false;
+
+        print("timer begin");
+
+        yield return new WaitForSeconds(coolDown);
+
+        print("timer end");
+
+        //SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
+        isSpawned = true;
+        renderer.enabled = true;
+        timer = 0f;
+
     }
 }

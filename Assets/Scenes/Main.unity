@@ -8881,7 +8881,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  restoreOriginalParent: 0
+  restoreOriginalParent: 1
   onPickUp:
     m_PersistentCalls:
       m_Calls: []
@@ -8904,6 +8904,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27afb6f8c96de9644bb4075f5090f788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &583620186 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 521723445522774039, guid: 5e6ce27fb7b732d47a54a18b647a8af3,
+    type: 3}
+  m_PrefabInstance: {fileID: 4694223716717002995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &586440761
 GameObject:
   m_ObjectHideFlags: 0
@@ -12104,6 +12110,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795542840}
   m_CullTransparentMesh: 1
+--- !u!1 &803287858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 803287859}
+  m_Layer: 0
+  m_Name: DisketteSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &803287859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803287858}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.877, y: 0.792, z: 1.188}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 583620186}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &816701236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21920,7 +21957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54a4af4cc6b48a9449034f15c9691985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  children: 1
+  children: 41
 --- !u!1 &1265995340
 GameObject:
   m_ObjectHideFlags: 0
@@ -34901,12 +34938,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 803287859}
     m_Modifications:
     - target: {fileID: 521723445522774039, guid: 5e6ce27fb7b732d47a54a18b647a8af3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 521723445522774039, guid: 5e6ce27fb7b732d47a54a18b647a8af3,
         type: 3}
@@ -34916,27 +34953,27 @@ PrefabInstance:
     - target: {fileID: 521723445522774039, guid: 5e6ce27fb7b732d47a54a18b647a8af3,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.75586
+      value: 0.75586003
       objectReference: {fileID: 0}
     - target: {fileID: 521723445522774039, guid: 5e6ce27fb7b732d47a54a18b647a8af3,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.75586
+      value: 0.75586003
       objectReference: {fileID: 0}
     - target: {fileID: 521723445522774039, guid: 5e6ce27fb7b732d47a54a18b647a8af3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.877
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 521723445522774039, guid: 5e6ce27fb7b732d47a54a18b647a8af3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.792
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 521723445522774039, guid: 5e6ce27fb7b732d47a54a18b647a8af3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.188
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 521723445522774039, guid: 5e6ce27fb7b732d47a54a18b647a8af3,
         type: 3}
@@ -34951,7 +34988,7 @@ PrefabInstance:
     - target: {fileID: 521723445522774039, guid: 5e6ce27fb7b732d47a54a18b647a8af3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 521723445522774039, guid: 5e6ce27fb7b732d47a54a18b647a8af3,
         type: 3}
@@ -34980,9 +35017,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8271155642959060996, guid: 5e6ce27fb7b732d47a54a18b647a8af3,
         type: 3}
-      propertyPath: coolDown
-      value: 30
+      propertyPath: timeOut
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8271155642959060996, guid: 5e6ce27fb7b732d47a54a18b647a8af3,
+        type: 3}
+      propertyPath: coolDown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8271155642959060996, guid: 5e6ce27fb7b732d47a54a18b647a8af3,
+        type: 3}
+      propertyPath: disketteSpawnLocation
+      value: 
+      objectReference: {fileID: 803287858}
     - target: {fileID: 8271155642959060996, guid: 5e6ce27fb7b732d47a54a18b647a8af3,
         type: 3}
       propertyPath: disketteSpawnLocation.x

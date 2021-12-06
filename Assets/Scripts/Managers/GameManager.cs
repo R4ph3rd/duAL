@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
                 }
 
                 print("diskette reseted");
-                diskettePort.diskette.ResetDiskette();
+                StartCoroutine(diskettePort.diskette.ResetDiskette());
                 isPlayerHackingAIComputers = false;
                 
                 /*Display a log on the AI interface*/
