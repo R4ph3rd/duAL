@@ -38,9 +38,13 @@ namespace Assets.Scripts
             {
                 outline.OutlineColor = Color.green;
             }
-            else if (status != GameManager.Owner.Human && TryGetComponent<Outline>(out outline))
+            else if (status == GameManager.Owner.IA && TryGetComponent<Outline>(out outline))
             {
                 outline.OutlineColor = Color.red;
+            }
+            else if (status == GameManager.Owner.None && TryGetComponent<Outline>(out outline))
+            {
+                outline.OutlineColor = Color.blue;
             }
         }
 
