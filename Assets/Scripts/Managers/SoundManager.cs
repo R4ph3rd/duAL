@@ -11,7 +11,13 @@ public class SoundManager : MonoBehaviour
     public AudioClip SuccessStepSound, FailureStepSound;
 
     //Intro sounds
-    public AudioClip warningVoice, entityDetectedVoice, containmentProtocolVoice, enemyTeleportVoice, rulesVoice, roboticVoice, instructionsTableVoice;
+    public AudioClip introVoice, instruTPVoice, instruHackVoice, infoDiskVoice, goodLuckVoice;
+
+    //Super power sounds
+    public AudioClip gravitySound;
+
+    //Hack sounds
+    public AudioClip iaHackedSound, humanHackedSound;
 
     private static SoundManager _this = null;
     public static SoundManager GetSoundManager()

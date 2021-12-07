@@ -29,8 +29,8 @@ public class IAManager : MonoBehaviour
     {
         miniGame = GetComponent<IA_QTE_MiniGame>();
         //ChangeCam(true);
-        IACam.transform.position = IACamTargets[(int)Room.storage].transform.position;
-        IACam.transform.rotation = IACamTargets[(int)Room.storage].transform.rotation;
+        IACam.transform.position = IACamTargets[(int)RoomID].transform.position;
+        IACam.transform.rotation = IACamTargets[(int)RoomID].transform.rotation;
         UpdateUIDisplay();
     }
 

@@ -220,6 +220,7 @@ public class InteractableKeyboard_MiniGame : MonoBehaviour
         {
             Debug.Log("-- QTE mini game success -- ");
             GetComponent<Computer>().CaptureComputer(GameManager.Owner.Human);
+            GameManager.GetManager().mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().humanHackedSound);
         }
         else
         {

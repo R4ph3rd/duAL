@@ -130,6 +130,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DisableGravityRoutine()
     {
+        /*AudioClip*/
+        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().gravitySound);
+
         /*Reducing the gravity force to zero*/
         Physics.gravity = new Vector3(0, 0, 0);
 
@@ -176,14 +179,14 @@ public class GameManager : MonoBehaviour
 
     IEnumerator PlayIntroSequence()
     {
-        yield return new WaitForSeconds(1f);
-        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().warningVoice);
+        yield return new WaitForSeconds(2f);
+        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().introVoice);
 
-        yield return new WaitForSeconds(1f);
-        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().entityDetectedVoice);
+        yield return new WaitForSeconds(6f);
+        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().instruTPVoice);
 
         yield return new WaitForSeconds(4f);
-        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().containmentProtocolVoice);
+        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().instruHackVoice);
 
         foreach (GameObject vfx in vfxGameObjects)
         {
@@ -194,19 +197,13 @@ public class GameManager : MonoBehaviour
 
         
 
-        yield return new WaitForSeconds(5f);
-        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().rulesVoice);
+        yield return new WaitForSeconds(12f);
+        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().infoDiskVoice);
 
-        yield return new WaitForSeconds(5f);
-        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().enemyTeleportVoice);
+        yield return new WaitForSeconds(16.5f);
+        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().goodLuckVoice);
 
         aiInstructionsPanel.SetActive(false);
-
-        yield return new WaitForSeconds(5f);
-        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().instructionsTableVoice);
-
-        yield return new WaitForSeconds(8f);
-        mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().roboticVoice);
 
     }
 }

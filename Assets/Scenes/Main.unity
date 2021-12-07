@@ -14814,6 +14814,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1271918236481223773, guid: 7b9d12577941619448242e7f239f4036,
         type: 3}
+      propertyPath: RoomID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271918236481223773, guid: 7b9d12577941619448242e7f239f4036,
+        type: 3}
       propertyPath: UIHackButtons.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -16956,6 +16961,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5361427716041310727, guid: dc06161b6d97feb419f45f03b62e14b9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
@@ -62056,9 +62066,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5442547724306276464, guid: 866115af285c9db478e1e42cd146426a,
         type: 3}
+      propertyPath: introVoice
+      value: 
+      objectReference: {fileID: 8300000, guid: faec4d9974d175246a8845d85864153f, type: 3}
+    - target: {fileID: 5442547724306276464, guid: 866115af285c9db478e1e42cd146426a,
+        type: 3}
       propertyPath: rulesVoice
       value: 
       objectReference: {fileID: 8300000, guid: bb4ff15faebab70459f8ace22c23fec4, type: 3}
+    - target: {fileID: 5442547724306276464, guid: 866115af285c9db478e1e42cd146426a,
+        type: 3}
+      propertyPath: gravitySound
+      value: 
+      objectReference: {fileID: 8300000, guid: e3759b1d7013c9341aa4ea881e9abeb5, type: 3}
     - target: {fileID: 5442547724306276464, guid: 866115af285c9db478e1e42cd146426a,
         type: 3}
       propertyPath: roboticVoice
@@ -62071,6 +62091,36 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: a5a1a31ec01d05248bd18b3fe285442b, type: 3}
     - target: {fileID: 5442547724306276464, guid: 866115af285c9db478e1e42cd146426a,
         type: 3}
+      propertyPath: goodLuckVoice
+      value: 
+      objectReference: {fileID: 8300000, guid: b288bc2d00d34984f9708a6e78f92fc4, type: 3}
+    - target: {fileID: 5442547724306276464, guid: 866115af285c9db478e1e42cd146426a,
+        type: 3}
+      propertyPath: iaHackedSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 1bf0f213c01e2444a81cc9f13a83fb86, type: 3}
+    - target: {fileID: 5442547724306276464, guid: 866115af285c9db478e1e42cd146426a,
+        type: 3}
+      propertyPath: infoDiskVoice
+      value: 
+      objectReference: {fileID: 8300000, guid: 46c9f00e50b2e8942b878f06a9a4083c, type: 3}
+    - target: {fileID: 5442547724306276464, guid: 866115af285c9db478e1e42cd146426a,
+        type: 3}
+      propertyPath: instruTPVoice
+      value: 
+      objectReference: {fileID: 8300000, guid: e799a372badb4f44eb01d1e8fcec11f7, type: 3}
+    - target: {fileID: 5442547724306276464, guid: 866115af285c9db478e1e42cd146426a,
+        type: 3}
+      propertyPath: instruHackVoice
+      value: 
+      objectReference: {fileID: 8300000, guid: 83ff87141be1a9f4db7f80d94d0a1769, type: 3}
+    - target: {fileID: 5442547724306276464, guid: 866115af285c9db478e1e42cd146426a,
+        type: 3}
+      propertyPath: humanHackedSound
+      value: 
+      objectReference: {fileID: 8300000, guid: bba4069a601b5354eae03de35ca67c83, type: 3}
+    - target: {fileID: 5442547724306276464, guid: 866115af285c9db478e1e42cd146426a,
+        type: 3}
       propertyPath: enemyTeleportVoice
       value: 
       objectReference: {fileID: 8300000, guid: 5a6a41b97593013489b864d8ceaa24ab, type: 3}
@@ -62081,9 +62131,19 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 06b9c630e27c9a540a67e9276a33932d, type: 3}
     - target: {fileID: 5442547724306276464, guid: 866115af285c9db478e1e42cd146426a,
         type: 3}
+      propertyPath: HumanWinMiniGameSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 14086b98c022a6045a9485af883c9a3c, type: 3}
+    - target: {fileID: 5442547724306276464, guid: 866115af285c9db478e1e42cd146426a,
+        type: 3}
       propertyPath: instructionsTableVoice
       value: 
       objectReference: {fileID: 8300000, guid: 15081f08fe5f781439b92e5dbcbeb4d2, type: 3}
+    - target: {fileID: 5442547724306276464, guid: 866115af285c9db478e1e42cd146426a,
+        type: 3}
+      propertyPath: HumanLooseMiniGameSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 77333bba2cb772845ad1ac80276d2042, type: 3}
     - target: {fileID: 5442547724306276464, guid: 866115af285c9db478e1e42cd146426a,
         type: 3}
       propertyPath: containmentProtocolVoice

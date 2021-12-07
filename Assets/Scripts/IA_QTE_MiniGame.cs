@@ -169,6 +169,7 @@ public class
             Debug.Log("-- QTE mini game success -- ");
             NextGestureImage.sprite = EndQTEScreen[1];
             BindedComputer.GetComponent<Computer>().CaptureComputer(GameManager.Owner.IA);
+            GameManager.GetManager().mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().iaHackedSound);
         } else
         {
             Debug.Log("-- QTE mini game failed -- ");
