@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class 
     IA_QTE_MiniGame : MonoBehaviour
@@ -51,6 +52,8 @@ public class
 
     private Computer BindedComputer;
     public bool isMiniGameInstanceRunning = false;
+
+    public UnityEvent OnSuccess;
 
     void Start()
     {
@@ -169,6 +172,7 @@ public class
             Debug.Log("-- QTE mini game success -- ");
             NextGestureImage.sprite = EndQTEScreen[1];
             //BindedComputer.GetComponent<Computer>().CaptureComputer(GameManager.Owner.IA); //Commented out for new gameplay
+            OnSuccess.Invoke();
             GameManager.GetManager().mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().iaHackedSound);
         } else
         {

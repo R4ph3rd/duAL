@@ -9,6 +9,9 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 public class WrenchCollisionDetector : MonoBehaviour
 {
+    private bool isStunningWorking = true;
+    public float stunCooldown = 30f;
+
     [SerializeField] private RoboticArmController armController;
 
 
@@ -22,5 +25,19 @@ public class WrenchCollisionDetector : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (isStunningWorking && other.gameObject.tag == "Player")
+        {
+            isStunningWorking = false;
+        }
+    }
+
+    IEnumerator StunPlayerCooldown()
+    {
+        HumanManager.instance.StartCoroutine(StunPlayerCooldown());
+        yield return new WaitForSeconds(stunCooldown);
+        isStunningWorking = true;
+    }
 
 }

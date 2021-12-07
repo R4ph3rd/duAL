@@ -25,6 +25,13 @@ public class IAManager : MonoBehaviour
         }
         return _this;
     }
+
+    /*AI SUPER POWERS*/
+    public ParticleSystem smokeScreenParticleSystem;
+    public bool isSmokeScreenAvailable = true;
+    public float smokeScreenCooldown=30f;
+    public float smokeScreenDuration=30f;
+
     void Start()
     {
         miniGame = GetComponent<IA_QTE_MiniGame>();
@@ -77,15 +84,15 @@ public class IAManager : MonoBehaviour
         {
             case Room.bridge:
                 ToggleButtons(false, false, true, false, false);
-                cameraPlaceText.text = "(BRIDGE)";
+                cameraPlaceText.text = "(PONT)";
                 break;
             case Room.control:
-                ToggleButtons(true, true, false, false, false);
-                cameraPlaceText.text = "(CONTROL ROOM)";
+                ToggleButtons(false, false, false, false, false);
+                cameraPlaceText.text = "(S. CONTROLE)";
                 break;
             case Room.storage:
-                ToggleButtons(false, false, false, true, true);
-                cameraPlaceText.text = "(STORAGE ROOM)";
+                ToggleButtons(false, false, false, false, false);
+                cameraPlaceText.text = "(S. STOCKAGE)";
                 break;
 
         }
@@ -110,5 +117,41 @@ public class IAManager : MonoBehaviour
         UIHackButtons[2].SetActive(c3);
         UIHackButtons[3].SetActive(c4);
         UIHackButtons[4].SetActive(c5);
+    }
+
+    public void TriggerSmokeScreen()
+    {
+        if (isSmokeScreenAvailable)
+        {
+            isSmokeScreenAvailable = false;
+            StartCoroutine(TriggerSmokeScreenCoroutine());
+        }
+    }
+
+    IEnumerator TriggerSmokeScreenCoroutine()
+    {
+        smokeScreenParticleSystem.Play();
+        foreach(Computer comp in GameManager.GetManager().computers)
+        {
+            Outline compOutline;
+            if (comp.RoomID == Room.bridge && TryGetComponent<Outline>(out compOutline))
+            {
+                compOutline.enabled = false;
+            }
+        }
+
+        yield return new WaitForSeconds(smokeScreenDuration);
+        smokeScreenParticleSystem.Stop();
+        foreach (Computer comp in GameManager.GetManager().computers)
+        {
+            Outline compOutline;
+            if (comp.RoomID == Room.bridge && TryGetComponent<Outline>(out compOutline))
+            {
+                compOutline.enabled = true;
+            }
+        }
+
+        yield return new WaitForSeconds(smokeScreenCooldown);
+        isSmokeScreenAvailable = true;
     }
 }

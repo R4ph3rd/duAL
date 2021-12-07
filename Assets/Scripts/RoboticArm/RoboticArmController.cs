@@ -61,10 +61,6 @@ public class RoboticArmController : MonoBehaviour
                 robotHeadIkTarget.transform.Translate(new Vector3(0, (-handoffset.z) * translationIncreaseFactor*1.5f, handoffset.y * translationIncreaseFactor), Space.Self);
             }
         }
-        
-        
-
-
     }
 
     public void OnPinchDetected()

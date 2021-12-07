@@ -16,6 +16,12 @@ public class HumanManager : MonoBehaviour
     public AudioClip audioClip;
     private float timer = 0f;
 
+    public GameObject[] forcedTPLocations;
+
+    /*Player malus*/
+    public float stunDuration = 30f;
+    public float paralizedDuration = 30f;
+
     void Start()
     {
         instance = this;
@@ -39,6 +45,22 @@ public class HumanManager : MonoBehaviour
     {
         audioSource.PlayOneShot(audioClip);
         yield return new WaitForSecondsRealtime(TPDelay);
+        isTPavalaible = true;
+    }
+
+    /// <summary>
+    /// Used to force the teleportation of the human player to a registered location
+    /// </summary>
+    public void ForceTeleportation()
+    {
+        gameObject.transform.position = forcedTPLocations[Random.Range(0, forcedTPLocations.Length - 1)].transform.position;
+        StartCoroutine(resetTPpower());
+    }
+
+    IEnumerator StunPlayer()
+    {
+        isTPavalaible = false;
+        yield return new WaitForSeconds(stunDuration);
         isTPavalaible = true;
     }
 }

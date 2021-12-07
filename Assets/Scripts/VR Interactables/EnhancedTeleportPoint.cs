@@ -7,6 +7,7 @@ using Valve.VR.InteractionSystem;
 public class EnhancedTeleportPoint : MonoBehaviour
 {
     public GameObject target;
+    public Room destination;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,6 +15,7 @@ public class EnhancedTeleportPoint : MonoBehaviour
         {
             Debug.Log("ENHANCED TP POINT DETECTED");
             HumanManager.instance.TeleportPower();
+            HumanManager.instance.roomID = destination;
             Player.instance.transform.position = target.transform.position;
         }
     }
