@@ -29,6 +29,21 @@ namespace Assets.Scripts
             CaptureComputer(status);
         }
 
+        private void Update()
+        {
+            Outline outline;
+
+            /*Handle Outline color*/
+            if((status == GameManager.Owner.Human) && TryGetComponent<Outline>(out outline))
+            {
+                outline.OutlineColor = Color.green;
+            }
+            else if (status != GameManager.Owner.Human && TryGetComponent<Outline>(out outline))
+            {
+                outline.OutlineColor = Color.red;
+            }
+        }
+
         public void CaptureComputer(GameManager.Owner owner)
         {
             status = owner;
