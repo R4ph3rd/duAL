@@ -10429,7 +10429,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &752811063
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35018,12 +35018,12 @@ PrefabInstance:
     - target: {fileID: 8271155642959060996, guid: 5e6ce27fb7b732d47a54a18b647a8af3,
         type: 3}
       propertyPath: timeOut
-      value: 2
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8271155642959060996, guid: 5e6ce27fb7b732d47a54a18b647a8af3,
         type: 3}
       propertyPath: coolDown
-      value: 2
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8271155642959060996, guid: 5e6ce27fb7b732d47a54a18b647a8af3,
         type: 3}
