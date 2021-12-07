@@ -507,6 +507,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2877859641566462018, guid: f574c4ef330c0094cb330d83fce40333,
         type: 3}
+      propertyPath: status
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2877859641566462018, guid: f574c4ef330c0094cb330d83fce40333,
+        type: 3}
       propertyPath: NoneScreenMat
       value: 
       objectReference: {fileID: 2100000, guid: 8ce871d24c7514a4990cc4ae1d117826, type: 2}
@@ -30812,7 +30817,7 @@ PrefabInstance:
     - target: {fileID: 2877859641566462018, guid: f574c4ef330c0094cb330d83fce40333,
         type: 3}
       propertyPath: status
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2877859641566462018, guid: f574c4ef330c0094cb330d83fce40333,
         type: 3}
@@ -46744,7 +46749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced6479ec1b20644997dd18ac91128ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: 2
+  status: 0
   ComputerValue: 0
   isBigComputer: 1
   RoomID: 0
@@ -73275,7 +73280,7 @@ PrefabInstance:
     - target: {fileID: 2877859641566462018, guid: f574c4ef330c0094cb330d83fce40333,
         type: 3}
       propertyPath: status
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2877859641566462018, guid: f574c4ef330c0094cb330d83fce40333,
         type: 3}
@@ -74837,9 +74842,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8377613610002076006, guid: 866115af285c9db478e1e42cd146426a,
         type: 3}
+      propertyPath: computers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377613610002076006, guid: 866115af285c9db478e1e42cd146426a,
+        type: 3}
       propertyPath: gravityPowerCoolDown
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 8377613610002076006, guid: 866115af285c9db478e1e42cd146426a,
+        type: 3}
+      propertyPath: computers.Array.data[0]
+      value: 
+      objectReference: {fileID: 6586823468568765828}
+    - target: {fileID: 8377613610002076006, guid: 866115af285c9db478e1e42cd146426a,
+        type: 3}
+      propertyPath: computers.Array.data[1]
+      value: 
+      objectReference: {fileID: 13813324}
+    - target: {fileID: 8377613610002076006, guid: 866115af285c9db478e1e42cd146426a,
+        type: 3}
+      propertyPath: computers.Array.data[2]
+      value: 
+      objectReference: {fileID: 2877859641638529435}
+    - target: {fileID: 8377613610002076006, guid: 866115af285c9db478e1e42cd146426a,
+        type: 3}
+      propertyPath: computers.Array.data[3]
+      value: 
+      objectReference: {fileID: 1216090844}
+    - target: {fileID: 8377613610002076006, guid: 866115af285c9db478e1e42cd146426a,
+        type: 3}
+      propertyPath: computers.Array.data[4]
+      value: 
+      objectReference: {fileID: 1074607013}
     - target: {fileID: 8377613610002076006, guid: 866115af285c9db478e1e42cd146426a,
         type: 3}
       propertyPath: vfxGameObjects.Array.size
@@ -74885,6 +74920,11 @@ PrefabInstance:
       propertyPath: gravitySensitiveObjects.Array.data[5]
       value: 
       objectReference: {fileID: 1025118356}
+    - target: {fileID: 8377613610002076007, guid: 866115af285c9db478e1e42cd146426a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8377613610002076007, guid: 866115af285c9db478e1e42cd146426a,
         type: 3}
       propertyPath: ScoreBars.Array.size

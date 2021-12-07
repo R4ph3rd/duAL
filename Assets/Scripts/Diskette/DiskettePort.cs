@@ -27,9 +27,15 @@ public class DiskettePort : MonoBehaviour
         if(other.TryGetComponent<Diskette>(out newDiskette))
         {
             Debug.Log("<color=yellow>Diskette Pluged-in</color>");
+            Grabbable grabbable;
+            if(TryGetComponent<Grabbable>(out grabbable))
+            {
+                grabbable.enabled = false;
+            }
             isDisketteIn = true;
             newDiskette.transform.SetParent(this.transform);
             newDiskette.transform.localPosition = new Vector3(0, 0, 0);
+            newDiskette.transform.localRotation = Quaternion.identity;
             diskette = newDiskette;
             GameManager.GetManager().TriggerDisketteSequence();
         }

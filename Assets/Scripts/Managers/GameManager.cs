@@ -74,7 +74,24 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(gameduration * 60);
         print("end game !");
-        
+        bool isHumanWining = true;
+
+        foreach(Computer comp in computers)
+        {
+            if(comp.status == Owner.IA)
+            {
+                isHumanWining = false;
+            }
+        }
+
+        if (isHumanWining)
+        {
+
+        }
+        else
+        {
+
+        }
         string winner = score.IAScore > score.HumanScore ? "AI" : score.IAScore == score.HumanScore ? "Nobody" : "Humanoïd Entity";
         endscoreImg.transform.GetChild(1).GetComponent<Text>().text = winner;
         endscoreImg.gameObject.SetActive(true);
