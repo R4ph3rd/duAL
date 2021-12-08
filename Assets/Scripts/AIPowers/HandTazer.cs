@@ -11,10 +11,10 @@ public class HandTazer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (isStunningWorking && other.gameObject.tag == "Player")
+        if (isStunningWorking && HumanManager.instance.isTPavalaible && other.gameObject.tag == "Player")
         {
             isStunningWorking = false;
-            HumanManager.instance.audioSource.PlayOneShot(SoundManager.GetSoundManager().tazzerSound);
+            HumanManager.instance.audioSource.PlayOneShot(SoundManager.GetSoundManager().electrifiedSound);
             HumanManager.instance.StartCoroutine(HumanManager.instance.StunPlayer());
             HumanManager.instance.StartCoroutine(StunPlayerCooldown());
         }
@@ -22,6 +22,8 @@ public class HandTazer : MonoBehaviour
 
     IEnumerator StunPlayerCooldown()
     {
+        yield return new WaitForSeconds(1f);
+        HumanManager.instance.audioSource.PlayOneShot(SoundManager.GetSoundManager().tazzerSound);
         yield return new WaitForSeconds(stunCooldown);
         isStunningWorking = true;
     }

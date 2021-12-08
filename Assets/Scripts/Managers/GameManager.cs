@@ -75,8 +75,8 @@ public class GameManager : MonoBehaviour
         /*Setting up player pos*/
         //print(xrInputs.TrySetTrackingOriginMode(TrackingOriginModeFlags.Floor));
         //xrInputs.TryRecenter();
-        Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseStanding);
-        Valve.VR.OpenVR.Chaperone.ResetZeroPose(ETrackingUniverseOrigin.TrackingUniverseStanding);
+        //Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseStanding);
+        //Valve.VR.OpenVR.Chaperone.ResetZeroPose(ETrackingUniverseOrigin.TrackingUniverseStanding);
 
         
 
@@ -110,13 +110,18 @@ public class GameManager : MonoBehaviour
 
         if (isHumanWining)
         {
+            mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().humanWinVoice);
+            HumanManager.instance.isTPavalaible = false;
 
         }
         else
         {
-
+            mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().aiWinVoice);
+            HumanManager.instance.isTPavalaible = false;
+            HumanManager.instance.vignette.VignetteOn = true;
         }
-        string winner = score.IAScore > score.HumanScore ? "AI" : score.IAScore == score.HumanScore ? "Nobody" : "Humanoïd Entity";
+        //string winner = score.IAScore > score.HumanScore ? "AI" : score.IAScore == score.HumanScore ? "Nobody" : "Humanoïd Entity";
+        string winner = !isHumanWining ? "AI" : "Humanoïd Entity";
         endscoreImg.transform.GetChild(1).GetComponent<Text>().text = winner;
         endscoreImg.gameObject.SetActive(true);
     }
@@ -211,13 +216,6 @@ public class GameManager : MonoBehaviour
         isGravityPowerTriggered = false;
     }
 
-    /// <summary>
-    /// Allows the human to trigger an Electromagnetic impulse to disturb the AI's systems
-    /// </summary>
-    public void TriggerEMIPower()
-    {
-
-    }
 
 
     public void TriggerDisketteSequence()
@@ -246,10 +244,10 @@ public class GameManager : MonoBehaviour
 
         
 
-        yield return new WaitForSeconds(12f);
+        yield return new WaitForSeconds(6f);
         mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().infoDiskVoice);
 
-        yield return new WaitForSeconds(16.5f);
+        yield return new WaitForSeconds(13.5f);
         mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().goodLuckVoice);
 
         aiInstructionsPanel.SetActive(false);

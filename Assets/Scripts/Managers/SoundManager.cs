@@ -14,11 +14,11 @@ public class SoundManager : MonoBehaviour
     public AudioClip introVoice, instruTPVoice, instruHackVoice, infoDiskVoice, goodLuckVoice;
 
     //Super power sounds
-    public AudioClip gravitySound, smokeSound, tpSound, tazzerSound, stunSound;
+    public AudioClip gravitySound, smokeSound, tpSound, tazzerSound, stunSound, impactSound,electrifiedSound;
 
     [Header("End game sounds")]
-    public AudioClip aiWinVoice, humanWinVoice;
-
+    public AudioClip aiWinVoice;
+    public AudioClip humanWinVoice;
     //Hack sounds
     public AudioClip iaHackedSound, humanHackedSound;
 

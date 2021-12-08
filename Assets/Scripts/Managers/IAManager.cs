@@ -32,6 +32,13 @@ public class IAManager : MonoBehaviour
     public float smokeScreenCooldown=30f;
     public float smokeScreenDuration=30f;
 
+    /*Camera status*/
+    public bool isBridgeCamOn = true;
+    public bool isControlCamOn = true;
+    public bool isStorageCamOn = true;
+    public GameObject camImage;
+    public GameObject camBlurryImage;
+
     void Start()
     {
         miniGame = GetComponent<IA_QTE_MiniGame>();
@@ -57,7 +64,18 @@ public class IAManager : MonoBehaviour
 
         /*Updating button display*/
         UpdateUIDisplay();
-        
+
+        /*Check Cam Status*/
+        if (GetCamStatus(RoomID))
+        {
+            camImage.SetActive(true);
+            camBlurryImage.SetActive(false);
+        }
+        else
+        {
+            camImage.SetActive(false);
+            camBlurryImage.SetActive(true);
+        }
 
     }
 
@@ -155,5 +173,36 @@ public class IAManager : MonoBehaviour
 
         yield return new WaitForSeconds(smokeScreenCooldown);
         isSmokeScreenAvailable = true;
+    }
+
+    public void UpdateCamStatus(Room roomID, bool value)
+    {
+        switch (roomID)
+        {
+            case Room.bridge:
+                isBridgeCamOn = value;
+                break;
+            case Room.control:
+                isControlCamOn = value;
+                break;
+            case Room.storage:
+                isStorageCamOn = value;
+                break;
+        }
+    }
+
+    public bool GetCamStatus(Room roomID)
+    {
+        switch (roomID)
+        {
+            case Room.bridge:
+                return isBridgeCamOn;
+            case Room.control:
+                return isControlCamOn;
+            case Room.storage:
+                return isStorageCamOn;
+            default:
+                return false;
+        }
     }
 }
