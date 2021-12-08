@@ -23,6 +23,8 @@ public class HumanManager : MonoBehaviour
     public float stunDuration = 30f;
     public float paralizedDuration = 30f;
 
+    public VignettePostProcess vignette;
+
     void Start()
     {
         instance = this;
@@ -55,14 +57,18 @@ public class HumanManager : MonoBehaviour
     /// </summary>
     public void ForceTeleportation()
     {
+        HumanManager.instance.audioSource.PlayOneShot(SoundManager.GetSoundManager().tpSound);
         gameObject.transform.position = forcedTPLocations[Random.Range(0, forcedTPLocations.Length - 1)].transform.position;
         StartCoroutine(resetTPpower());
     }
 
-    IEnumerator StunPlayer()
+    public IEnumerator StunPlayer()
     {
+
         isTPavalaible = false;
+        vignette.VignetteOn = true;
         yield return new WaitForSeconds(stunDuration);
+        vignette.VignetteOn=false;
         isTPavalaible = true;
     }
 }

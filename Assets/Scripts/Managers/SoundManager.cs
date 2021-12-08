@@ -14,7 +14,10 @@ public class SoundManager : MonoBehaviour
     public AudioClip introVoice, instruTPVoice, instruHackVoice, infoDiskVoice, goodLuckVoice;
 
     //Super power sounds
-    public AudioClip gravitySound;
+    public AudioClip gravitySound, smokeSound, tpSound, tazzerSound, stunSound;
+
+    [Header("End game sounds")]
+    public AudioClip aiWinVoice, humanWinVoice;
 
     //Hack sounds
     public AudioClip iaHackedSound, humanHackedSound;

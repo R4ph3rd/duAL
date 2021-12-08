@@ -130,6 +130,8 @@ public class IAManager : MonoBehaviour
 
     IEnumerator TriggerSmokeScreenCoroutine()
     {
+        HumanManager.instance.audioSource.PlayOneShot(SoundManager.GetSoundManager().smokeSound);
+
         smokeScreenParticleSystem.Play();
         foreach(Computer comp in GameManager.GetManager().computers)
         {
