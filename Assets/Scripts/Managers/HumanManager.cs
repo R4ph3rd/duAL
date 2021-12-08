@@ -7,6 +7,7 @@ public class HumanManager : MonoBehaviour
     // Start is called before the first frame update
     public static HumanManager instance;
 
+    public Vector3 initPos;
     public bool isTPavalaible = true;
     private float TPDelay = 5.120f;
 
@@ -26,6 +27,11 @@ public class HumanManager : MonoBehaviour
     {
         instance = this;
         TPDelay = audioClip.length;
+
+        /*Reset Cam*/
+        //UnityEngine.VR.InputTracking.Recenter();
+        Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
+        transform.position = initPos;
     }
 
     // Update is called once per frame
