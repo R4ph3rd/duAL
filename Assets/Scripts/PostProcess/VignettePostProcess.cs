@@ -9,7 +9,7 @@ public class VignettePostProcess : MonoBehaviour
 
     private PostProcessVolume m_PpVolume;
     private Vignette m_Vignette;
-    private float m_VignetteIntensityValue = 0.63f;
+    //private float m_VignetteIntensityValue = 0.63f;
     public bool VignetteOn = false;
 
 
@@ -29,7 +29,7 @@ public class VignettePostProcess : MonoBehaviour
         if(VignetteOn)
         {
             m_Vignette.enabled.value = true;
-            m_Vignette.intensity.value = m_VignetteIntensityValue;
+           // m_Vignette.intensity.value = m_VignetteIntensityValue;
         }
 
         // Vignette disabled

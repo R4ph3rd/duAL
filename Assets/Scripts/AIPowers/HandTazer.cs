@@ -7,7 +7,7 @@ public class HandTazer : MonoBehaviour
     private bool isStunningWorking = true;
     public float stunCooldown = 30f;
 
-    [SerializeField] private RoboticArmController armController;
+    //[SerializeField] private RoboticArmController armController;
 
     private void OnTriggerEnter(Collider other)
     {
