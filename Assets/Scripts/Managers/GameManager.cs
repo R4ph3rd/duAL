@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     {
         if (_this == null)
         {
-            _this = FindObjectOfType<GameManager>(); ;
+            _this = FindObjectOfType<GameManager>();
         }
         return _this;
     }

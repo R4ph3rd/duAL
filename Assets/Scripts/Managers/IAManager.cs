@@ -21,7 +21,7 @@ public class IAManager : MonoBehaviour
     {
         if (_this == null)
         {
-            _this = new IAManager();
+            _this = FindObjectOfType<IAManager>();
         }
         return _this;
     }
@@ -33,16 +33,20 @@ public class IAManager : MonoBehaviour
     public float smokeScreenDuration=30f;
 
     /*Camera status*/
-    public bool isBridgeCamOn = true;
-    public bool isControlCamOn = true;
-    public bool isStorageCamOn = true;
+    public bool isBridgeCamOn;
+    public bool isControlCamOn;
+    public bool isStorageCamOn;
     public GameObject camImage;
     public GameObject camBlurryImage;
 
     void Start()
     {
+        isBridgeCamOn = true;
+        isControlCamOn = true;
+        isStorageCamOn = true;
+
         miniGame = GetComponent<IA_QTE_MiniGame>();
-        //ChangeCam(true);
+        RoomID = Room.control;
         IACam.transform.position = IACamTargets[(int)RoomID].transform.position;
         IACam.transform.rotation = IACamTargets[(int)RoomID].transform.rotation;
         UpdateUIDisplay();
@@ -50,22 +54,11 @@ public class IAManager : MonoBehaviour
 
     void Update()
     {
-        //Debug
-        //if (Input.GetKeyDown(KeyCode.G))
-        //{
-        //    print("swipe left");
-        //    ChangeCam(false);
-        //}
-        //if (Input.GetKeyDown(KeyCode.H))
-        //{
-        //    print("swipe right");
-        //    ChangeCam(true);
-        //}
-
         /*Updating button display*/
         UpdateUIDisplay();
 
         /*Check Cam Status*/
+        //Debug.Log($"cam {RoomID} :{GetCamStatus(RoomID)} ");
         if (GetCamStatus(RoomID))
         {
             camImage.SetActive(true);
@@ -73,6 +66,7 @@ public class IAManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("cam HS");
             camImage.SetActive(false);
             camBlurryImage.SetActive(true);
         }
@@ -184,6 +178,7 @@ public class IAManager : MonoBehaviour
                 break;
             case Room.control:
                 isControlCamOn = value;
+                Debug.Log("control cam updated" + isControlCamOn.ToString());
                 break;
             case Room.storage:
                 isStorageCamOn = value;
@@ -193,6 +188,7 @@ public class IAManager : MonoBehaviour
 
     public bool GetCamStatus(Room roomID)
     {
+        //Debug.Log($"control cam in {roomID}");
         switch (roomID)
         {
             case Room.bridge:

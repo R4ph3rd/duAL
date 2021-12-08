@@ -24,7 +24,7 @@ public class CameraCollider : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         if (isBreakable)
         {
@@ -37,9 +37,12 @@ public class CameraCollider : MonoBehaviour
     {
         smokeParticleSystem.Play();
         IAManager.GetIAManager().UpdateCamStatus(roomID, false);
+
         yield return new WaitForSeconds(blurDuration);
+
         smokeParticleSystem.Stop();
         IAManager.GetIAManager().UpdateCamStatus(roomID, true);
+
         yield return new WaitForSeconds(powerCooldown);
         isBreakable = true;
     }
