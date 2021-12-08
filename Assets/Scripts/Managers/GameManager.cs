@@ -54,6 +54,10 @@ public class GameManager : MonoBehaviour
     private bool isPlayerHackingAIComputers = false;
     private float hackingTimer=0f;
 
+    private float gameTimer;
+    public string displayTime;
+    public Text[] watches;
+
     public Canvas endscoreImg;
 
     public GameObject ScoreScreen;
@@ -69,8 +73,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         /*Setting up player pos*/
-        print(xrInputs.TrySetTrackingOriginMode(TrackingOriginModeFlags.Floor));
-        xrInputs.TryRecenter();
+        //print(xrInputs.TrySetTrackingOriginMode(TrackingOriginModeFlags.Floor));
+        //xrInputs.TryRecenter();
         Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseStanding);
         Valve.VR.OpenVR.Chaperone.ResetZeroPose(ETrackingUniverseOrigin.TrackingUniverseStanding);
 
@@ -86,6 +90,8 @@ public class GameManager : MonoBehaviour
         }
 
         score = Score.GetScore();
+
+        gameTimer = gameduration*60f;
     }
 
     IEnumerator EndGame()
@@ -118,6 +124,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        gameTimer -= Time.deltaTime;
+        displayTime = ((int)(gameTimer/60f)).ToString("00") + ":" + (gameTimer%60f).ToString("00");
+        //Debug.Log($"gameTimer = {gameTimer} ----- displayTime= {displayTime}");
+        foreach (Text text in watches)
+        {
+            text.text = displayTime;
+        }
+
         /*Handling the hacking of the AI computers*/
         if (isPlayerHackingAIComputers)
         {
