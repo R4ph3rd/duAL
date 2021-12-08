@@ -83,26 +83,79 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(PlayIntroSequence());
 
-        StartCoroutine(EndGame());
-
-        foreach (Computer c in FindObjectsOfType<Computer>()){
+        foreach (Computer c in FindObjectsOfType<Computer>())
+        {
             computers.Add(c);
         }
 
         score = Score.GetScore();
-
         gameTimer = gameduration*60f;
     }
 
-    IEnumerator EndGame()
+   
+
+    // Update is called once per frame
+    void Update()
     {
-        yield return new WaitForSecondsRealtime(gameduration * 60);
-        print("end game !");
+        if(gameState == State.Game)
+        {
+            /*Gestion du temps de jeu*/
+            gameTimer -= Time.deltaTime;
+            displayTime = ((int)(gameTimer / 60f)).ToString("00") + ":" + (gameTimer % 60f).ToString("00");
+            foreach (Text text in watches)
+            {
+                text.text = displayTime;
+            }
+
+            /*Handling the hacking of the AI computers*/
+            if (isPlayerHackingAIComputers)
+            {
+                hackingTimer += Time.deltaTime;
+                /*Case of a successfull hacking*/
+                if (hackingTimer >= hackingTime)
+                {
+                    Debug.Log("<color=green>Successfull hacking ! AI looses all its computers</color>");
+                    //foreach (Computer c in computers)
+                    //{
+                    //    if(c.status == Owner.IA)
+                    //    {
+                    //        c.CaptureComputer(Owner.None);
+                    //    }
+                    //}
+                    StartCoroutine(ShutdownArm());
+                    print("diskette reseted");
+                    StartCoroutine(diskettePort.diskette.ResetDiskette());
+                    isPlayerHackingAIComputers = false;
+
+                    /*Display a log on the AI interface*/
+                    /*Play a hacking sound ?*/
+                }
+                /*Case someone removed the diskette before the end of the hacking sequence*/
+                else if ((!diskettePort.isDisketteIn) && (hackingTimer < hackingTime))
+                {
+                    Debug.Log("<color=red>Diskette removed before the end of the hacking sequence</color>");
+                    isPlayerHackingAIComputers = false;
+                }
+            }
+
+            /*Gestion des conditions de victoire*/
+            CheckVictoryConditions();
+
+            if(gameTimer <= 0f)
+            {
+                gameState = State.GameOver;
+                CheckVictoryConditions();
+            }
+        }
+    }
+
+    private void CheckVictoryConditions()
+    {
         bool isHumanWining = true;
 
-        foreach(Computer comp in computers)
+        foreach (Computer comp in computers)
         {
-            if(comp.status == Owner.IA)
+            if (comp.status == Owner.None)
             {
                 isHumanWining = false;
             }
@@ -112,62 +165,23 @@ public class GameManager : MonoBehaviour
         {
             mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().humanWinVoice);
             HumanManager.instance.isTPavalaible = false;
-
+            gameState = State.GameOver;
+            //string winner = score.IAScore > score.HumanScore ? "AI" : score.IAScore == score.HumanScore ? "Nobody" : "Humanoïd Entity";
+            string winner = !isHumanWining ? "AI" : "Humanoïd Entity";
+            endscoreImg.transform.GetChild(1).GetComponent<Text>().text = winner;
+            endscoreImg.gameObject.SetActive(true);
         }
-        else
+        else if (gameState == State.GameOver && !isHumanWining)
         {
             mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().aiWinVoice);
             HumanManager.instance.isTPavalaible = false;
             HumanManager.instance.vignette.VignetteOn = true;
-        }
-        //string winner = score.IAScore > score.HumanScore ? "AI" : score.IAScore == score.HumanScore ? "Nobody" : "Humanoïd Entity";
-        string winner = !isHumanWining ? "AI" : "Humanoïd Entity";
-        endscoreImg.transform.GetChild(1).GetComponent<Text>().text = winner;
-        endscoreImg.gameObject.SetActive(true);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        gameTimer -= Time.deltaTime;
-        displayTime = ((int)(gameTimer/60f)).ToString("00") + ":" + (gameTimer%60f).ToString("00");
-        //Debug.Log($"gameTimer = {gameTimer} ----- displayTime= {displayTime}");
-        foreach (Text text in watches)
-        {
-            text.text = displayTime;
-        }
-
-        /*Handling the hacking of the AI computers*/
-        if (isPlayerHackingAIComputers)
-        {
-            hackingTimer += Time.deltaTime;
-            /*Case of a successfull hacking*/
-            if (hackingTimer >= hackingTime)
-            {
-                Debug.Log("<color=green>Successfull hacking ! AI looses all its computers</color>");
-                //foreach (Computer c in computers)
-                //{
-                //    if(c.status == Owner.IA)
-                //    {
-                //        c.CaptureComputer(Owner.None);
-                //    }
-                //}
-                StartCoroutine(ShutdownArm());
-                print("diskette reseted");
-                StartCoroutine(diskettePort.diskette.ResetDiskette());
-                isPlayerHackingAIComputers = false;
-                
-                /*Display a log on the AI interface*/
-                /*Play a hacking sound ?*/
-            }
-            /*Case someone removed the diskette before the end of the hacking sequence*/
-            else if((!diskettePort.isDisketteIn)&&(hackingTimer < hackingTime))
-            {
-                Debug.Log("<color=red>Diskette removed before the end of the hacking sequence</color>");
-                isPlayerHackingAIComputers = false;
-            }
+            string winner = !isHumanWining ? "AI" : "Humanoïd Entity";
+            endscoreImg.transform.GetChild(1).GetComponent<Text>().text = winner;
+            endscoreImg.gameObject.SetActive(true);
         }
     }
+
 
     /// <summary>
     /// Allows the AI to stop the gravity system on the ship for xx secs
@@ -226,8 +240,11 @@ public class GameManager : MonoBehaviour
 
     IEnumerator PlayIntroSequence()
     {
+        
         yield return new WaitForSeconds(2f);
         mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().introVoice);
+
+        gameState = State.Game;
 
         yield return new WaitForSeconds(6f);
         mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().instruTPVoice);
@@ -235,15 +252,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(4f);
         mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().instruHackVoice);
 
-        foreach (GameObject vfx in vfxGameObjects)
-        {
-            vfx.SetActive(true);
-        }
-
-        gameState = State.Game;
-
         
-
         yield return new WaitForSeconds(6f);
         mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().infoDiskVoice);
 

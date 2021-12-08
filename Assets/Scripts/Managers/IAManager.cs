@@ -39,6 +39,9 @@ public class IAManager : MonoBehaviour
     public GameObject camImage;
     public GameObject camBlurryImage;
 
+    [Header("HAND")]
+    public GameObject trackedRightHandMesh;
+
     void Start()
     {
         isBridgeCamOn = true;
@@ -84,6 +87,15 @@ public class IAManager : MonoBehaviour
         {
             RoomID--;
             RoomID = (int)RoomID < 0 ? Room.storage : RoomID;
+        }
+
+        if (RoomID == Room.control)
+        {
+            trackedRightHandMesh.SetActive(true);
+        }
+        else
+        {
+            trackedRightHandMesh.SetActive(false);
         }
 
         IACam.transform.position = IACamTargets[(int)RoomID].transform.position;
