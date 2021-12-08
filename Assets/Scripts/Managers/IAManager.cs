@@ -121,7 +121,7 @@ public class IAManager : MonoBehaviour
 
     public void TriggerSmokeScreen()
     {
-        if (isSmokeScreenAvailable)
+        if (isSmokeScreenAvailable && RoomID == Room.bridge)
         {
             isSmokeScreenAvailable = false;
             StartCoroutine(TriggerSmokeScreenCoroutine());

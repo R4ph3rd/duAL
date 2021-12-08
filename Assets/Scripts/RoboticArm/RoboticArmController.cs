@@ -22,6 +22,7 @@ public class RoboticArmController : MonoBehaviour
     public GameObject lowerWrenchIKTarget;
 
     public GameObject attachmentPoint;
+    public Vector3 ikCalibrationPosition = new Vector3(0, 0.2f, 0.3f);
 
     private Hand hand;
     private Vector3 handFormerNormal;
@@ -29,8 +30,11 @@ public class RoboticArmController : MonoBehaviour
     private Space robotSpace;
     private bool isPinching = false;
     private bool isTryingToGrab = false;
+    private bool isPositionInitialized = false;
+    public bool isControlEnable = true;
 
     private GameObject grabbedGameObject;
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,24 +45,31 @@ public class RoboticArmController : MonoBehaviour
         handFormerPosition = hand.PalmPosition.ToVector3();
         handFormerNormal = hand.PalmNormal.ToVector3();
 
+        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.GetManager().aiPlayer.RoomID == Room.storage)
+        if (isControlEnable && GameManager.GetManager().aiPlayer.RoomID == Room.storage)
         {
             
             hand = trackedHandModel.GetLeapHand();
             if ((hand.IsLeft && trackedHandModel.Handedness == Chirality.Left) || (hand.IsRight && trackedHandModel.Handedness == Chirality.Right))
             {
-                Vector3 handoffset = handFormerPosition - hand.PalmPosition.ToVector3();
+                Vector3 handoffset = handFormerPosition - hand.PalmPosition.ToVector3();//.InLocalSpace(trackedHandModel.transform);
 
                 handFormerPosition = hand.PalmPosition.ToVector3();
 
                 /*Affecting each coordinate of the handOffset vector3 to the robot position*/
-                robotRotatingBase.transform.Rotate(Vector3.up, handoffset.x * rotationIncreaseFactor, Space.World);
-                robotHeadIkTarget.transform.Translate(new Vector3(0, (-handoffset.z) * translationIncreaseFactor*1.5f, handoffset.y * translationIncreaseFactor), Space.Self);
+                robotRotatingBase.transform.Rotate(Vector3.up, handoffset.z * rotationIncreaseFactor, Space.World);
+                robotHeadIkTarget.transform.Translate(new Vector3(0, (-handoffset.x) * translationIncreaseFactor*1.5f, handoffset.y * translationIncreaseFactor), Space.Self);
+                if (!isPositionInitialized)
+                {
+                    robotHeadIkTarget.transform.localPosition = ikCalibrationPosition;
+                    isPositionInitialized = true;
+                }
             }
         }
     }
