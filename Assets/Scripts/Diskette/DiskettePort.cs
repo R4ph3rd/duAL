@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class DiskettePort : MonoBehaviour
 {
     public bool isDisketteIn=false;
     public Diskette diskette;
+
+    
 
     private void Update()
     {
@@ -32,6 +35,13 @@ public class DiskettePort : MonoBehaviour
             {
                 grabbable.enabled = false;
             }
+
+            Interactable interactable;
+            if (TryGetComponent<Interactable>(out interactable))
+            {
+                interactable.enabled = false;
+            }
+
             isDisketteIn = true;
             newDiskette.transform.SetParent(this.transform);
             newDiskette.transform.localPosition = new Vector3(0, 0, 0);
@@ -41,5 +51,6 @@ public class DiskettePort : MonoBehaviour
         }
     }
 
+    
     
 }

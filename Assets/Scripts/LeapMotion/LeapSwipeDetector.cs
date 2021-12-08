@@ -30,6 +30,7 @@ public class LeapSwipeDetector : Detector
             palmDirDetect.HandModel = handModel;
             palmDirDetect.PointingDirection = swipeVector;
             palmDirDetect.PointingType = PointingType.RelativeToWorld;
+            palmDirDetect.ShowGizmos = true;
         }
         
     }
@@ -73,15 +74,15 @@ public class LeapSwipeDetector : Detector
         switch(dir)
         {
             case SwipingDirection.left:
-                return new Vector3(-1,0,0);
+                return -transform.right;
             case SwipingDirection.right:
-                return new Vector3(1, 0, 0);
+                return transform.right;
             case SwipingDirection.up:
-                return new Vector3(0, 1, 0);
+                return transform.up;
             case SwipingDirection.down:
-                return new Vector3(0, -1, 0);
+                return -transform.up;
             default:
-                return new Vector3(0,0,0);
+                return transform.right;
         }
     }
 }

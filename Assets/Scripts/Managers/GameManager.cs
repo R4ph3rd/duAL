@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.XR;
+using Valve;
+using UnityEngine.XR;
+using Valve.VR;
 
 public enum Room { bridge = 0, storage =1, control =2};
 public enum State { Intro, Game, GameOver};
@@ -57,8 +61,22 @@ public class GameManager : MonoBehaviour
     private Score score;
     public float gameduration = 5;
 
+    public XRInputSubsystem xrInputs = new XRInputSubsystem();
+
+    public RoboticArmController armController;
+    public float armDeactivationDuration = 20f;
+
     void Start()
     {
+        /*Setting up player pos*/
+        print(xrInputs.TrySetTrackingOriginMode(TrackingOriginModeFlags.Floor));
+        xrInputs.TryRecenter();
+        Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseStanding);
+        Valve.VR.OpenVR.Chaperone.ResetZeroPose(ETrackingUniverseOrigin.TrackingUniverseStanding);
+
+        
+
+
         StartCoroutine(PlayIntroSequence());
 
         StartCoroutine(EndGame());
@@ -108,14 +126,14 @@ public class GameManager : MonoBehaviour
             if (hackingTimer >= hackingTime)
             {
                 Debug.Log("<color=green>Successfull hacking ! AI looses all its computers</color>");
-                foreach (Computer c in computers)
-                {
-                    if(c.status == Owner.IA)
-                    {
-                        c.CaptureComputer(Owner.None);
-                    }
-                }
-
+                //foreach (Computer c in computers)
+                //{
+                //    if(c.status == Owner.IA)
+                //    {
+                //        c.CaptureComputer(Owner.None);
+                //    }
+                //}
+                StartCoroutine(ShutdownArm());
                 print("diskette reseted");
                 StartCoroutine(diskettePort.diskette.ResetDiskette());
                 isPlayerHackingAIComputers = false;
@@ -222,5 +240,12 @@ public class GameManager : MonoBehaviour
 
         aiInstructionsPanel.SetActive(false);
 
+    }
+
+    IEnumerator ShutdownArm()
+    {
+        armController.isControlEnable = false;
+        yield return new WaitForSeconds(armDeactivationDuration);
+        armController.isControlEnable = true;
     }
 }
