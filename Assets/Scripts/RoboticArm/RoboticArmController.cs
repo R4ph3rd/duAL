@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Leap.Unity;
 using Leap;
+using UnityEngine.UI;
 
 public class RoboticArmController : MonoBehaviour
 {
@@ -56,6 +57,14 @@ public class RoboticArmController : MonoBehaviour
         {
             
             hand = trackedHandModel.GetLeapHand();
+
+            /*Check grab action*/
+            if (isPinching && !trackedHandModel.IsTracked)
+            {
+                OnPinchDeactivated();
+            }
+
+            /*Update hand position*/
             if ((hand.IsLeft && trackedHandModel.Handedness == Chirality.Left) || (hand.IsRight && trackedHandModel.Handedness == Chirality.Right))
             {
                 Vector3 handoffset = handFormerPosition - hand.PalmPosition.ToVector3();//.InLocalSpace(trackedHandModel.transform);
@@ -70,6 +79,8 @@ public class RoboticArmController : MonoBehaviour
                     robotHeadIkTarget.transform.localPosition = ikCalibrationPosition;
                     isPositionInitialized = true;
                 }
+
+                
             }
         }
     }
@@ -106,7 +117,7 @@ public class RoboticArmController : MonoBehaviour
             timer += 0.01f;
             yield return new WaitForSeconds(0.01f);
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         isTryingToGrab = false;
 
     }
@@ -133,6 +144,9 @@ public class RoboticArmController : MonoBehaviour
     {
         if(grabbedGameObject == null && isTryingToGrab)
         {
+            /*changing gesture image*/
+            IAManager.GetIAManager().UIGestureControls[(int)Room.storage].GetComponent<UnityEngine.UI.Image>().color = Color.red;
+
             Debug.Log("GRABBED!");
             grabbedObject.UpdateGrabStatus(true);
             grabbedGameObject = grabbedObject.gameObject;
@@ -145,7 +159,9 @@ public class RoboticArmController : MonoBehaviour
 
     IEnumerator Ungrab()
     {
-        
+        /*changing gesture image*/
+        IAManager.GetIAManager().UIGestureControls[(int)Room.storage].GetComponent<UnityEngine.UI.Image>().color = Color.white;
+
         Debug.Log("UNGRABBED!");
         /*Releasing the grabbed object*/
         yield return new WaitForSeconds(0.5f);

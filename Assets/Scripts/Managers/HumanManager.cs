@@ -8,6 +8,8 @@ public class HumanManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public static HumanManager instance;
+    //public Rigidbody rb;
+
     public bool isTPavalaible = true;
     private float TPDelay = 5.120f;
 
@@ -30,6 +32,11 @@ public class HumanManager : MonoBehaviour
         instance = this;
         TPDelay = audioClip.length;
 
+        //if (TryGetComponent<Rigidbody>(out rb))
+        //{
+        //    rb.detectCollisions = false;
+        //}
+        
     }
 
     // Update is called once per frame

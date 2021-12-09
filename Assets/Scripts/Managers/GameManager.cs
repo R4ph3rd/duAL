@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     public float gravityPowerCoolDown = 60f;
     public float gravityPowerDuration = 10f;
     private bool isGravityPowerTriggered = false;
+    public bool isHumanAffectedByGravity = true;
 
     [Header("Diskette")]
     //public DisketteDispenser disketteDispenser; //UNUSED
@@ -204,6 +205,9 @@ public class GameManager : MonoBehaviour
         /*Reducing the gravity force to zero*/
         Physics.gravity = new Vector3(0, 0, 0);
 
+        /*changing gesture image*/
+        IAManager.GetIAManager().UIGestureControls[(int)Room.control].GetComponent<Image>().color = Color.red;
+
         /*Giving a small impule to the objects with physics*/
         if (gravitySensitiveObjects.Length > 0)
         {
@@ -218,7 +222,43 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(gravityPowerDuration);
+        /*Activation of Vignette*/
+        if (isHumanAffectedByGravity)
+        {
+            HumanManager.instance.vignette.VignetteOn = true;
+            HumanManager.instance.isTPavalaible = false;
+        }
+
+        /*Ascent*/
+        float gravityTimer = gravityPowerDuration/2;
+        while(gravityTimer >= 0f)
+        {
+            if (isHumanAffectedByGravity)
+            {
+                HumanManager.instance.transform.position += new Vector3(0, 0.001f, 0);
+            }
+            gravityTimer -= 0.01f;
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        /*Fall*/
+        gravityTimer = gravityPowerDuration / 2;
+        while (gravityTimer >= 0f)
+        {
+            if (isHumanAffectedByGravity)
+            {
+                HumanManager.instance.transform.position -= new Vector3(0, 0.001f, 0);
+            }
+            gravityTimer -= 0.01f;
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        /*Deactivation of Vignette*/
+        if (isHumanAffectedByGravity)
+        {
+            HumanManager.instance.vignette.VignetteOn = false;
+            HumanManager.instance.isTPavalaible = true;
+        }
 
         /*Reactivitating the gravity*/
         Physics.gravity = new Vector3(0, -9.81f, 0);
@@ -228,6 +268,8 @@ public class GameManager : MonoBehaviour
         /*cooldown phase*/
         yield return new WaitForSeconds(gravityPowerCoolDown);
         isGravityPowerTriggered = false;
+        /*changing gesture image*/
+        IAManager.GetIAManager().UIGestureControls[(int)Room.control].GetComponent<Image>().color = Color.white;
     }
 
 

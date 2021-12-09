@@ -156,6 +156,9 @@ public class IAManager : MonoBehaviour
     {
         HumanManager.instance.audioSource.PlayOneShot(SoundManager.GetSoundManager().smokeSound);
 
+        /*changing gesture image*/
+        UIGestureControls[(int)Room.bridge].GetComponent<Image>().color = Color.red;
+
         smokeScreenParticleSystem.Play();
         foreach(Computer comp in GameManager.GetManager().computers)
         {
@@ -177,8 +180,12 @@ public class IAManager : MonoBehaviour
             }
         }
 
+        /*Cooldown phase*/
         yield return new WaitForSeconds(smokeScreenCooldown);
         isSmokeScreenAvailable = true;
+
+        /*changing gesture image*/
+        UIGestureControls[(int)Room.bridge].GetComponent<Image>().color = Color.white;
     }
 
     public void UpdateCamStatus(Room roomID, bool value)
