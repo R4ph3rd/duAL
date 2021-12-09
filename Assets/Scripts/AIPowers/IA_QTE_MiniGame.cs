@@ -173,7 +173,7 @@ public class
             NextGestureImage.sprite = EndQTEScreen[1];
             //BindedComputer.GetComponent<Computer>().CaptureComputer(GameManager.Owner.IA); //Commented out for new gameplay
             OnSuccess.Invoke();
-            GameManager.GetManager().mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().iaHackedSound);
+            //GameManager.GetManager().mainAudioSource.PlayOneShot(SoundManager.GetSoundManager().iaHackedSound);
         } else
         {
             Debug.Log("-- QTE mini game failed -- ");
