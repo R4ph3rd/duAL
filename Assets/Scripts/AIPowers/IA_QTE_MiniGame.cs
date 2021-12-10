@@ -127,7 +127,7 @@ public class
 
     void resetStatus()
     {
-        InitialNumberOfSteps = (int)Random.Range(8, maxSteps);
+        InitialNumberOfSteps = (int)Random.Range(maxSteps, maxSteps);
         NumberOfSteps = InitialNumberOfSteps;
         StepSuccess = 0;
         progressionBar.value = 0;
